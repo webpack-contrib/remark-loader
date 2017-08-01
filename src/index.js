@@ -1,21 +1,16 @@
-'use strict';
-
-const
-  build = require('./build.js'),
-  parser = require('./parser.js');
+const Parse = require('./parse.js')
+const Build = require('./build.js')
 
 /**
- * Main function
- * @param   {String}  content   Markdown file content
+ * Primary loader function
+ * 
+ * @param {string} content - Markdown file content
  */
-module.exports = function (content) {
+module.exports = function(content) {
+    const callback = this.async()
 
-  const callback = this.async();
-
-  parser
-    .parse(content)
-    .then(build)
-    .then(component => callback(null, component))
-    .catch(callback);
-
+    Parse(content)
+        .then(Build)
+        .then(component => callback(null, component))
+        .catch(callback)
 };

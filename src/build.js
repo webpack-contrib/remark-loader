@@ -1,45 +1,47 @@
-'use strict';
-const camelize = require('camelize');
-const except = require('except');
-
 /**
- * @typedef HTMLObject
- * @type {Object}
- * @property {String} html    - HTML parsed from markdown
- * @property {Object} imports - Map of dependencies
+ * Builds the component.jsx file with dependencies
+ * 
+ * @param   {object} markdown - HTML and imports
+ * @returns {string}          - React Component
  */
+module.exports = function(markdown) {
+    let { template, imports: nestedImports = {} } = markdown.attributes,
+        jsx = markdown.html.replace(/class=/g, 'className='),
+        imports = [{ import: 'React', path: 'react' }]
 
-/**
- * Builds the React Component from markdown content
- * with its dependencies
- * @param   {HTMLObject} markdown - HTML and imports
- * @returns {String}              - React Component
- */
-module.exports = function build(markdown) {
-
-  let doImports = 'import React from \'react\';\n';
-  const
-    imports = markdown.attributes.imports || {},
-    jsx = markdown.html.replace(/class=/g, 'className=');
-
-  const frontMatterAttributes = except(markdown.attributes, 'imports');
-
-  for (const variable in imports) {
-    // eslint-disable-next-line no-prototype-builtins
-    if (imports.hasOwnProperty(variable)) {
-      doImports += `import ${variable} from '${imports[variable]}';\n`;
+    for (var key in nestedImports) {
+        if ( nestedImports.hasOwnProperty(key) ) {
+            imports.push({
+                import: key,
+                path: nestedImports[key]
+            })
+        }
     }
-  }
 
-  return `
-${doImports}
+    if (template) {
+        imports.push({ import: 'Template', path: template })
 
-export const attributes = ${JSON.stringify(camelize(frontMatterAttributes))};
-export default function() {
-  return (
-    <div>
-      ${jsx}
-    </div>
-  );
-};`;
+        return `
+            ${ imports.map(item => `import ${item.import} from '${item.path}'`).join('\n') }
+
+            let Markdown = props => (
+                <div>
+                    ${jsx}
+                </div>
+            )
+
+            export default props => (
+                <Template markdown={ Markdown } />
+            )
+        `
+
+    } else return `
+        ${ imports.map(item => `import ${item.import} from '${item.path}'`).join('\n') }
+
+        export default props => (
+            <div>
+                ${jsx}
+            </div>
+        )
+    `
 };
