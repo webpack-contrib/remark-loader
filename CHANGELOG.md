@@ -4,3 +4,5 @@ All notable changes to this project will be documented in this file. See [standa
 
 <a name="0.1.0"></a>
 # [0.1.0](https://github.com/skipjack/react-markdown-loader/compare/v1.1.11...v0.1.0) (2017-08-01)
+
+Port and refactor the repository from [`react-markdown-loader`](https://github.com/javiercf/react-markdown-loader). Still working on the switching over to [`remark`](https://github.com/wooorm/remark) over [`remarkable`](https://github.com/jonschlinkert/remarkable).
