@@ -16,7 +16,7 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 This project was inspired the following open source work:
 
 - [`react-markdown-loader`](https://github.com/javiercf/react-markdown-loader)
-- [`marksy`]()
+- [`marksy`](https://github.com/cerebral/marksy)
 
 
 ## License
