@@ -13,6 +13,6 @@ indent_style = space
 indent_size = 2
 
 # Config Formatting
-[{package.json,.babelrc,.eslintrc.json}]
+[{package.json,.eslintrc}]
 indent_style = space
 indent_size = 2
