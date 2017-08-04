@@ -3,7 +3,8 @@
 Remark Loader
 -------------
 
-Load markdown through remark with image resolving and some react-specific features.
+Load markdown through remark with image resolving and some react-specific 
+features.
 
 
 ## Usage
@@ -35,11 +36,20 @@ module.exports = {
 }
 ```
 
-Here's the full list of [`remark` plugins][1]. Note that [`remark-html`][3] is always included as the last plugin and should not be included in the `plugins` list.
+Here's the full list of [`remark` plugins][1]. Note that [`remark-html`][3] 
+is always included as the last plugin and should not be included in the 
+`plugins` list.
 
-> Note that this loader makes use of the [`html-loader`][5] under the hood. The output, without the `react` option enabled, is the default output for the `html-loader`.
+> Note that this loader makes use of the [`html-loader`][5] under the hood. 
+The output, without the `react` option enabled, is the default output for 
+the `html-loader`.
 
-There is one more option called `react`. This option causes the loader to emit a JSX module that __must be loaded through the `babel-loader`__. This feature is more of a test and __should not be considered safe or reliable__ -- it's most likely riddled with bugs and weird edge case failures ;). That said, it enables some cool new features that should really be added via some sort of `remark` plugin, e.g. [`remark-react`][4].
+There is one more option called `react`. This option causes the loader to 
+emit a JSX module that __must be loaded through the `babel-loader`__. This 
+feature is more of a test and __should not be considered safe or reliable__ -- 
+it's most likely riddled with bugs and weird edge case failures ;). That 
+said, it enables some cool new features that should really be added via some 
+sort of `remark` plugin, e.g. [`remark-react`][4].
 
 __webpack.config.js__
 
@@ -68,7 +78,8 @@ module.exports = {
 }
 ```
 
-Now, in your markdown files, you can take advantage of two new YAML frontmatter attributes:
+Now, in your markdown files, you can take advantage of two new YAML 
+frontmatter attributes:
 
 __src/pages/index.md__
 
@@ -80,15 +91,22 @@ imports:
   Selector: '../components/selector'
 ---
 
-This page will now be wrapped in the given `template`. The `template` will receive a component containing this markdown via a `markdown` prop. You can pass the `Markdown` component props that will then be available for dynamic insertion here!
+This page will now be wrapped in the given `template`. The `template` 
+will receive a component containing this markdown via a `markdown` prop. 
+You can pass the `Markdown` component props that will then be available 
+for dynamic insertion here!
 
 For example, let's insert `props.person` within the following blockquote:
 
 > Hello { props.person }!
 
-Not too shabby, huh? Note that for technical reasons you can only dynamically insert values within content (or components as shown )
+Not too shabby, huh? Note that for technical reasons you can only 
+dynamically insert values within content (or components as shown below).
 
-You can also use any components from the given `imports`. Let's say you had an interactive `Selector` component, you could render it here, while still allowing the parent template to maintain control of its state and callbacks:
+You can also use any components from the given `imports`. Let's say you 
+had an interactive `Selector` component, you could render it here, while 
+still allowing the parent template to maintain control of its state and 
+callbacks:
 
 <Selector
   value={ props.selection }
@@ -126,22 +144,29 @@ export default class Template extends React.Component {
 }
 ```
 
-> Note that these features are optional, meaning that not every markdown file being processed has to take advantage of them. Also note that this will cause the loader to output a JSX module that will have to be processed further by the `babel-loader` or another transpiler that can handle the conversion of JSX to react statements.
+> Note that these features are optional, meaning that not every markdown file 
+> being processed has to take advantage of them. Also note that this will cause 
+> the loader to output a JSX module that will have to be processed further by the 
+> `babel-loader` or another transpiler that can handle the conversion of JSX to 
+> react statements.
 
-_This hack works for now but I'm hoping to discuss these features with the `remark` and `remark-react` maintainers to brainstorm a more stable implementation. If you have ideas, please create an issue so we can discuss._
+_This hack works for now but I'm hoping to discuss these features with the `remark` 
+and `remark-react` maintainers to brainstorm a more stable implementation. If you 
+have ideas, please create an issue so we can discuss._
 
 
 ## Contributing
 
-Pull requests and stars are always welcome. For bugs and feature requests, please [create an issue][2].
+Pull requests and stars are always welcome. For bugs and feature requests, please 
+[create an issue][2].
 
 
 ## Inspiration
 
 This project was inspired the following open source work:
 
-- [`react-markdown-loader`](https://github.com/javiercf/react-markdown-loader)
-- [`marksy`](https://github.com/cerebral/marksy)
+- [`react-markdown-loader`][6]
+- [`marksy`][7]
 
 
 ## License
@@ -152,5 +177,7 @@ MIT (c) 2017
 [1]: https://github.com/wooorm/remark/blob/master/doc/plugins.md
 [2]: https://github.com/skipjack/remark-loader/issues
 [3]: https://github.com/wooorm/remark-html
-[4]: 
-[5]: 
+[4]: https://github.com/mapbox/remark-react
+[5]: https://github.com/webpack-contrib/html-loader
+[6]: https://github.com/javiercf/react-markdown-loader
+[7]: https://github.com/cerebral/marksy
