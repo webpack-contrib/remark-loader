@@ -21,7 +21,7 @@ module.exports = function(markdown, options = {}) {
             .reduce((remark, item) => {
                 return remark.use(item)
             }, Remark())
-            .use(options.output === 'html' ? RemarkHTML : RemarkReact)
+            .use(RemarkHTML) // RECONSIDER: options.output === 'html' ? RemarkHTML : RemarkReact)
             .process(parsed.body, (err, file) => {
                 let result = {
                     content: file.contents,
