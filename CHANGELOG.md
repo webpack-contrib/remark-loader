@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.3"></a>
+## [0.2.3](https://github.com/skipjack/remark-loader/compare/v0.2.2...v0.2.3) (2017-08-08)
+
+
+### Bug Fixes
+
+* **react:** fix syntax error in build script ([cb951f6](https://github.com/skipjack/remark-loader/commit/cb951f6))
+
+
+
 <a name="0.2.2"></a>
 ## [0.2.2](https://github.com/skipjack/remark-loader/compare/v0.2.1...v0.2.2) (2017-08-08)
 
