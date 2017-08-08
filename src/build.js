@@ -8,13 +8,24 @@ module.exports = function(resolved) {
     let { template, imports: nestedImports = {} } = resolved.attributes,
         imports = [{ import: 'React', path: 'react' }],
         content = '',
-        jsx = (
-            resolved.content
-                .replace(/class=/g, 'className=') // Please react
-                .replace(/(<(?:img|hr)[^>]*)>/g, '$1 />') // Please react
-                .replace(/&#x3C;/g, '<') // Fix escaped react elements
-                .replace(/<p>(<[A-Z][\s\S]*?)<\/p>/g, '$1') // Remove surrounding p tags from components
+        jsx = resolved.content
+
+    jsx = jsx.replace(/class=/g, 'className=') // Please react
+    jsx = jsx.replace(/(<(?:img|hr)[^>]*)>/g, '$1 />') // Please react
+    jsx = jsx.replace(/&#x3C;/g, '<') // Fix escaped react elements
+    jsx = jsx.replace(/<p>(<[A-Z][\s\S]*?)<\/p>/g, '$1') // Remove surrounding p tags from components
+    jsx = jsx.replace('module.exports = ', '') // Remove lead-in from html-loader
+    jsx = jsx.slice(1, jsx.length - 2) // Remove quotes from around JSX
+    jsx = jsx.replace(/\\"" \+ (require\(".+?"\)) \+ "\\"/g, '{ $1 }') // Wrap html-loader `require`s
+    jsx = jsx.replace(/\\"/g, '"') // Unescape quotes
+    jsx = jsx.replace(/\\n/g, '\n') // Unescape newlines
+    jsx = jsx.replace(/<code.+?>([\s\S]+?)<\/code>/g, (match, content, offset, string) => {
+        return (
+            match
+                .replace(/{/g, '{ "{" }')
+                .replace(/\n/g, '{ "\\n" }') // Inject react/jsx compatible newlines for code
         )
+    })
 
     for (var key in nestedImports) {
         if ( nestedImports.hasOwnProperty(key) ) {
@@ -29,18 +40,14 @@ module.exports = function(resolved) {
         imports.push({ import: 'Template', path: template })
     }
 
-    content += imports.map(item => `import ${item.import} from '${item.path}'`).join('\n')
-
-    let test = jsx.replace('module.exports = ', '')
-    test = test.slice(1, test.length - 2)
-    test = test.replace(/\\"" \+ (require\(".+?"\)) \+ "\\"/g, '{ $1 }')
-    // console.log( eval(test) )
+    content += imports.map(item => (
+        `import ${item.import} from '${item.path}'
+    `).join('\n')
 
     content += `   
     let Markdown = props => (
         <div>
-            ${ test.replace(/\\"/g, '"').replace(/\\n/g, `
-`) }
+            ${ jsx }
         </div>
     )
     `
