@@ -41,8 +41,8 @@ module.exports = function(resolved) {
     }
 
     content += imports.map(item => (
-        `import ${item.import} from '${item.path}'
-    `).join('\n')
+        `import ${item.import} from '${item.path}'`
+    )).join('\n')
 
     content += `   
     let Markdown = props => (
