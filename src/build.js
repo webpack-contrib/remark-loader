@@ -54,7 +54,9 @@ module.exports = function(resolved) {
 
     if (template) content += `
     export default props => (
-        <Template markdown={ Markdown } />
+        <Template 
+            attributes={ ${JSON.stringify(resolved.attributes)} }
+            markdown={ Markdown } />
     )
     `
     
