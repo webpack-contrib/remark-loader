@@ -19,7 +19,10 @@ module.exports = function(markdown, options = {}) {
     return new Promise((resolve, reject) => {
         plugins
             .reduce((remark, item) => {
-                return remark.use(item)
+                if ( Array.isArray(item) ) {
+                    return remark.use.apply(null, item)
+
+                } else return remark.use(item)
             }, Remark())
             .use(RemarkHTML) // RECONSIDER: options.output === 'html' ? RemarkHTML : RemarkReact)
             .process(parsed.body, (err, file) => {
