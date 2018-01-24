@@ -15,7 +15,7 @@ module.exports = function(content) {
     Parse(content, options)
         // TODO: Refactor this hack -- we should probably just intercept images in the tree
         .then(processed => Object.assign({}, processed, {
-            content: HTMLLoader(processed.content)
+            content: HTMLLoader(processed.content).replace('module.exports = ', 'export default ')
         }))
         // TODO: Ideally this should be enabled via remark-react or another plugin (discuss with the author)
         .then(resolved => options.react ? Build(resolved) : resolved)

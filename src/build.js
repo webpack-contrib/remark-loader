@@ -14,7 +14,7 @@ module.exports = function(resolved) {
     jsx = jsx.replace(/(<(?:img|hr)[^>]*)>/g, '$1 />') // Please react
     jsx = jsx.replace(/&#x3C;/g, '<') // Fix escaped react elements
     jsx = jsx.replace(/<p>(<[A-Z][\s\S]*?)<\/p>/g, '$1') // Remove surrounding p tags from components
-    jsx = jsx.replace('module.exports = ', '') // Remove lead-in from html-loader
+    jsx = jsx.replace('export default ', '') // Remove lead-in from html-loader
     jsx = jsx.slice(1, jsx.length - 2) // Remove quotes from around JSX
     jsx = jsx.replace(/\\"" \+ (require\(".+?"\)) \+ "\\"/g, '{ $1 }') // Wrap html-loader `require`s
     jsx = jsx.replace(/\\"/g, '"') // Unescape quotes
