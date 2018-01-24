@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.1"></a>
+## [0.3.1](https://github.com/skipjack/remark-loader/compare/v0.3.0...v0.3.1) (2018-01-24)
+
+
+### Bug Fixes
+
+* allow specified `template` to receive any higher-level `props` ([b365efa](https://github.com/skipjack/remark-loader/commit/b365efa))
+* use ES6 module syntax for the output modules ([d550fa4](https://github.com/skipjack/remark-loader/commit/d550fa4))
+
+
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/skipjack/remark-loader/compare/v0.2.3...v0.3.0) (2017-08-10)
 
