@@ -19,6 +19,7 @@ module.exports = function(resolved) {
     jsx = jsx.replace(/\\"" \+ (require\(".+?"\)) \+ "\\"/g, '{ $1 }') // Wrap html-loader `require`s
     jsx = jsx.replace(/\\"/g, '"') // Unescape quotes
     jsx = jsx.replace(/\\n/g, '\n') // Unescape newlines
+    jsx = jsx.replace(/<br>/g, '<br />')
     jsx = jsx.replace(/<code.+?>([\s\S]+?)<\/code>/g, (match, content, offset, string) => {
         return (
             match
