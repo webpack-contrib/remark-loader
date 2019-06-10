@@ -1,8 +1,6 @@
 const FrontMatter = require('front-matter')
 const Remark = require('remark')
 const RemarkHTML = require('remark-html')
-const RemarkReact = require('remark-react')
-const React = require('react')
 const Report = require('vfile-reporter')
 
 /**
@@ -24,7 +22,7 @@ module.exports = function(markdown, options = {}) {
 
                 } else return remark.use(item)
             }, Remark())
-            .use(RemarkHTML) // RECONSIDER: options.output === 'html' ? RemarkHTML : RemarkReact)
+            .use(RemarkHTML)
             .process(parsed.body, (err, file) => {
                 let result = {
                     content: file.contents,
