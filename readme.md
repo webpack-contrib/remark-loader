@@ -1,5 +1,5 @@
-[![NPM Version][7]][5]
-[![Standard Version][8]][6]
+[![NPM Version][10]][8]
+[![Standard Version][11]][9]
 
 Remark Loader
 =============
@@ -182,7 +182,7 @@ MIT (c) 2017
 [5]: https://github.com/webpack-contrib/html-loader
 [6]: https://github.com/javiercf/react-markdown-loader
 [7]: https://github.com/cerebral/marksy
-[5]: https://www.npmjs.com/package/remark-loader
-[6]: https://github.com/conventional-changelog/standard-version
-[7]: https://img.shields.io/npm/v/remark-loader.svg
-[8]: https://img.shields.io/badge/release-standard%20version-brightgreen.svg
+[8]: https://www.npmjs.com/package/remark-loader
+[9]: https://github.com/conventional-changelog/standard-version
+[10]: https://img.shields.io/npm/v/remark-loader.svg
+[11]: https://img.shields.io/badge/release-standard%20version-brightgreen.svg
