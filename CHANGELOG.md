@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.0-rc.0"></a>
+# [1.0.0-rc.0](https://github.com/skipjack/remark-loader/compare/v0.3.2...v1.0.0-rc.0) (2019-06-10)
+
+
+### Chores
+
+* remove react specific code ([f4e64c4](https://github.com/skipjack/remark-loader/commit/f4e64c4)), closes [#1](https://github.com/skipjack/remark-loader/issues/1)
+
+
+### BREAKING CHANGES
+
+* The `react` option has been removed. Our implementation
+was extremely hacky and led to a bunch of pitfalls. Please use MDX as an
+alternative.
+
+
+
 <a name="0.3.2"></a>
 ## [0.3.2](https://github.com/skipjack/remark-loader/compare/v0.3.1...v0.3.2) (2018-02-06)
 
