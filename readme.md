@@ -1,7 +1,8 @@
-[![Standard Version](https://img.shields.io/badge/release-standard%20version-brightgreen.svg)](https://github.com/conventional-changelog/standard-version)
+[![NPM Version][7]][5]
+[![Standard Version][8]][6]
 
 Remark Loader
--------------
+=============
 
 Load markdown through remark with image resolving and some react-specific 
 features.
@@ -181,3 +182,7 @@ MIT (c) 2017
 [5]: https://github.com/webpack-contrib/html-loader
 [6]: https://github.com/javiercf/react-markdown-loader
 [7]: https://github.com/cerebral/marksy
+[5]: https://www.npmjs.com/package/react-banner
+[6]: https://github.com/conventional-changelog/standard-version
+[7]: https://img.shields.io/npm/v/react-banner.svg
+[8]: https://img.shields.io/badge/release-standard%20version-brightgreen.svg
