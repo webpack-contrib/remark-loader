@@ -30,7 +30,7 @@
     "vfile-reporter": "^4.0.0"
   },
   "devDependencies": {
-    "eslint": "^3.19.0",
+    "eslint": "^4.18.2",
     "standard-version": "^4.2.0"
   },
   "publishConfig": {
