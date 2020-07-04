@@ -21,8 +21,8 @@ module.exports = {
       {
         test: /\.md$/,
         use: [
-          { 
-            loader: 'remark-loader', 
+          {
+            loader: 'remark-loader',
             options: {
               plugins: [
                 require('remark-kbd')
@@ -36,10 +36,28 @@ module.exports = {
 }
 ```
 
-Here's the full list of [`remark` plugins][1]. Note that [`remark-html`][3] 
-is always included as the last plugin and should not be included in the 
+Here's the full list of [`remark` plugins][1]. Note that [`remark-html`][3]
+is always included as the last plugin and should not be included in the
 `plugins` list.
 
+Frontmatter values are converted to named exports. For example, if you have this
+markdown file:
+
+```md
+---
+title: a clever remark
+---
+hello world!
+```
+
+You can use it like this:
+
+```js
+import contents, { title } from './test.md'
+
+console.log(contents) // logs "hello world!"
+console.log(title) // logs "a clever remark"
+```
 
 > This loader makes use of [`html-loader`][5] under the hood. You can
 > forward options to it via `htmlLoaderOptions`:
@@ -62,7 +80,7 @@ We no longer support any `react` specific features. Please see the wonderful
 
 ## Contributing
 
-Pull requests and stars are always welcome. For bugs and feature requests, 
+Pull requests and stars are always welcome. For bugs and feature requests,
 please [create an issue][2].
 
 
