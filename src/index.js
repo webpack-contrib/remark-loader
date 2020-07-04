@@ -4,19 +4,32 @@ const parse = require('./parse.js')
 
 /**
  * Primary loader function
- * 
+ *
  * @param {string} content - Markdown file content
  */
 module.exports = function(content) {
     const callback = this.async()
     const options = Utils.getOptions(this)
 
+    let attributes
+
     parse(content, options)
         // @todo we should probably just intercept images in the tree
         // or recommend that the `html-loader` be chained
-        .then(processed => Object.assign({}, processed, {
-            content: HTMLLoader(processed.content)
-        }))
-        .then(resolved => callback(null, resolved.content))
+        .then(processed => {
+            attributes = processed.attributes;
+            return HTMLLoader.call(
+                { query: { esModule: true } },
+                processed.content
+            )
+        })
+        .then(resolved => {
+            const result = [
+                resolved,
+                ...Object.entries(attributes).map(([k,v]) => `export const ${k} = ${JSON.stringify(v)};`)
+            ].join('\n')
+
+            callback(null, result)
+        })
         .catch(callback)
 };
