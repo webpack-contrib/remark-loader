@@ -10,8 +10,8 @@ const Report = require('vfile-reporter')
  * @param   {object} options  - Options passed to the loader
  * @returns {object}          - HTML and imports
  */
-module.exports = function(markdown, options = {}) {
-    let { plugins = [] } = options,
+module.exports = function(markdown, options) {
+    let { plugins = [] } = (options || {}),
         parsed = FrontMatter(markdown)
 
     return new Promise((resolve, reject) => {
