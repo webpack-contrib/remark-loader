@@ -11,6 +11,8 @@ module.exports = function(content) {
     const callback = this.async()
     const options = Utils.getOptions(this)
 
+    const { htmlLoaderOptions } = (options || {});
+
     let attributes
 
     parse(content, options)
@@ -19,7 +21,7 @@ module.exports = function(content) {
         .then(processed => {
             attributes = processed.attributes;
             return HTMLLoader.call(
-                { query: { esModule: true } },
+                { query: Object.assign({}, htmlLoaderOptions, { esModule: true }) },
                 processed.content
             )
         })

@@ -40,7 +40,21 @@ Here's the full list of [`remark` plugins][1]. Note that [`remark-html`][3]
 is always included as the last plugin and should not be included in the 
 `plugins` list.
 
-> This loader makes use of the [`html-loader`][5] under the hood.
+
+> This loader makes use of [`html-loader`][5] under the hood. You can
+> forward options to it via `htmlLoaderOptions`:
+> ```js
+> {
+>   loader: 'remark-loader',
+>   options: {
+>     htmlLoaderOptions: {
+>       minimize: false
+>     }
+>   }
+> }
+> ```
+> The `esModule` option will always be `true` so that frontmatter values from
+> the markdown are correctly exported.
 
 We no longer support any `react` specific features. Please see the wonderful
 [MDX][12] project if you're interested in mixing JSX with Markdown.
