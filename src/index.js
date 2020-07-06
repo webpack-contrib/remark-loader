@@ -16,22 +16,22 @@ module.exports = function(content) {
     let attributes
 
     parse(content, options)
-        // @todo we should probably just intercept images in the tree
-        // or recommend that the `html-loader` be chained
         .then(processed => {
-            attributes = processed.attributes;
+            attributes = processed.attributes
+
+            const options = Object.assign({}, htmlLoaderOptions, { esModule: true })
+            const context = Object.assign({}, this, { query: options })
+
             return HTMLLoader.call(
-                { query: Object.assign({}, htmlLoaderOptions, { esModule: true }) },
+                context,
                 processed.content
             )
         })
         .then(resolved => {
-            const result = [
-                resolved,
-                ...Object.entries(attributes).map(([k,v]) => `export const ${k} = ${JSON.stringify(v)};`)
-            ].join('\n')
-
-            callback(null, result)
+            callback(
+                null,
+                `${resolved}\n;export const attributes = ${JSON.stringify(attributes)};`
+            )
         })
         .catch(callback)
 };
