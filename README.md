@@ -40,8 +40,8 @@ Here's the full list of [`remark` plugins][1]. Note that [`remark-html`][3]
 is always included as the last plugin and should not be included in the
 `plugins` list.
 
-Frontmatter values are converted to named exports. For example, if you have this
-markdown file:
+Frontmatter values are assigned to an object exported as `attributes`. For
+example, if you have this markdown file:
 
 ```md
 ---
@@ -53,10 +53,10 @@ hello world!
 You can use it like this:
 
 ```js
-import contents, { title } from './test.md'
+import contents, { attributes } from './test.md'
 
 console.log(contents) // logs "hello world!"
-console.log(title) // logs "a clever remark"
+console.log(attributes) // logs "{ title: 'a clever remark' }"
 ```
 
 > This loader makes use of [`html-loader`][5] under the hood. You can
@@ -71,7 +71,7 @@ console.log(title) // logs "a clever remark"
 >   }
 > }
 > ```
-> The `esModule` option will always be `true` so that frontmatter values from
+> The `esModule` option will always be `true` to ensure frontmatter values from
 > the markdown are correctly exported.
 
 We no longer support any `react` specific features. Please see the wonderful
