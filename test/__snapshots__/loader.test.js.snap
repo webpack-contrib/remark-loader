@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`remark-loader handles a basic file with attributes 1`] = `
+Object {
+  "attributes": Object {
+    "title": "my good post",
+  },
+  "default": "<h1>hello world!</h1>
+<p>a fine post here</p>
+",
+}
+`;
+
+exports[`remark-loader handles a file with complex attributes 1`] = `
+Object {
+  "attributes": Object {
+    "info": Object {
+      "data": "yes",
+      "list": Array [
+        "a thing",
+        "another thing",
+        "a third thing",
+        Object {
+          "nested object": Object {
+            "it's": "happening",
+            "why": "why not",
+          },
+        },
+      ],
+      "time": "soon",
+    },
+    "title": "a fine post",
+  },
+  "default": "<h1>hello world!</h1>
+<p>here's my good content</p>
+",
+}
+`;
+
+exports[`remark-loader handles a file without frontmatter 1`] = `
+"<h1>hello world!</h1>
+<p>another great post</p>
+"
+`;
