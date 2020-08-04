@@ -52,11 +52,6 @@ is always included as the last plugin and should not be included in the
 We no longer support any `react` specific features. Please see the wonderful
 [MDX][12] project if you're interested in mixing JSX with Markdown.
 
-## Contributing
-
-Pull requests and stars are always welcome. For bugs and feature requests,
-please [create an issue][2].
-
 ## Inspiration
 
 This project was inspired the following open source work:
