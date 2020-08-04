@@ -1,7 +1,9 @@
-import Utils from 'loader-utils';
+import { getOptions } from 'loader-utils';
 import HTMLLoader from 'html-loader';
+import validateOptions from 'schema-utils';
 
 import parse from './parse';
+import schema from './options.json';
 
 /**
  * Primary loader function
@@ -10,7 +12,12 @@ import parse from './parse';
  */
 export default function loader(content) {
   const callback = this.async();
-  const options = Utils.getOptions(this);
+  const options = getOptions(this);
+
+  validateOptions(schema, options, {
+    name: 'Remark Loader',
+    baseDataPath: 'options',
+  });
 
   parse(content, options)
     // @todo we should probably just intercept images in the tree
