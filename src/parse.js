@@ -1,6 +1,5 @@
 import FrontMatter from 'front-matter';
 import Remark from 'remark';
-import RemarkHTML from 'remark-html';
 import Report from 'vfile-reporter';
 
 /**
@@ -23,7 +22,6 @@ export default function parse(markdown, options) {
 
         return remark.use(item);
       }, Remark())
-      .use(RemarkHTML)
       .process(parsed.body, (err, file) => {
         const result = {
           content: file.contents,
