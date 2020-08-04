@@ -1,5 +1,4 @@
 import { getOptions } from 'loader-utils';
-import HTMLLoader from 'html-loader';
 import validateOptions from 'schema-utils';
 
 import parse from './parse';
@@ -22,11 +21,6 @@ export default function loader(content) {
   parse(content, options)
     // @todo we should probably just intercept images in the tree
     // or recommend that the `html-loader` be chained
-    .then((processed) =>
-      Object.assign({}, processed, {
-        content: HTMLLoader(processed.content),
-      })
-    )
     .then((resolved) => callback(null, resolved.content))
     .catch(callback);
 }
