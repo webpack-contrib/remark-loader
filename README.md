@@ -1,19 +1,17 @@
 [![NPM Version][10]][8]
 [![Standard Version][11]][9]
 
-Remark Loader
-=============
+# Remark Loader
 
 Load markdown through `remark` with built-in image resolution.
-
 
 ## Usage
 
 Simply add the loader to your configuration, and pass options.
 
-__webpack.config.js__
+**webpack.config.js**
 
-``` js
+```js
 module.exports = {
   // ...
   module: {
@@ -21,23 +19,21 @@ module.exports = {
       {
         test: /\.md$/,
         use: [
-          { 
-            loader: 'remark-loader', 
+          {
+            loader: 'remark-loader',
             options: {
-              plugins: [
-                require('remark-kbd')
-              ]
-            }
-          }
-        ]
-      }
-    ]
-  }
-}
+              plugins: [require('remark-kbd')],
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
 ```
 
-Here's the full list of [`remark` plugins][1]. Note that [`remark-html`][3] 
-is always included as the last plugin and should not be included in the 
+Here's the full list of [`remark` plugins][1]. Note that [`remark-html`][3]
+is always included as the last plugin and should not be included in the
 `plugins` list.
 
 > This loader makes use of the [`html-loader`][5] under the hood.
@@ -45,12 +41,10 @@ is always included as the last plugin and should not be included in the
 We no longer support any `react` specific features. Please see the wonderful
 [MDX][12] project if you're interested in mixing JSX with Markdown.
 
-
 ## Contributing
 
-Pull requests and stars are always welcome. For bugs and feature requests, 
+Pull requests and stars are always welcome. For bugs and feature requests,
 please [create an issue][2].
-
 
 ## Inspiration
 
@@ -59,11 +53,9 @@ This project was inspired the following open source work:
 - [`react-markdown-loader`][6]
 - [`marksy`][7]
 
-
 ## License
 
 MIT (c) 2017
-
 
 [1]: https://github.com/wooorm/remark/blob/master/doc/plugins.md
 [2]: https://github.com/skipjack/remark-loader/issues
