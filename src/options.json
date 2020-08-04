@@ -1,9 +1,10 @@
 {
   "type": "object",
+  "additionalProperties": false,
   "properties": {
-    "name": {
-      "type": "boolean"
+    "plugins": {
+      "type": "array",
+      "minItems": 1
     }
-  },
-  "additionalProperties": false
+  }
 }
