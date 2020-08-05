@@ -2,6 +2,7 @@ import path from 'path';
 
 import RemarkHTML from 'remark-html';
 import RemarkKbd from 'remark-kbd';
+import RemarkBookmarks from 'remark-bookmarks';
 
 import {
   compile,
@@ -12,9 +13,8 @@ import {
 } from './helpers';
 
 describe('loader', () => {
-  it('should work markdown -> markdown', async () => {
+  it('should work markdown to markdown', async () => {
     const compiler = getCompiler('simple.js', {
-      // eslint-disable-next-line global-require
       plugins: [RemarkKbd],
     });
     const stats = await compile(compiler);
@@ -25,7 +25,7 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  it('should work markdown -> html', async () => {
+  it('should work markdown to html', async () => {
     const compiler = getCompiler(
       'simple.js',
       {},
@@ -44,7 +44,6 @@ describe('loader', () => {
                 {
                   loader: path.resolve(__dirname, '../src'),
                   options: {
-                    // eslint-disable-next-line global-require
                     plugins: [RemarkKbd, RemarkHTML],
                   },
                 },
@@ -54,6 +53,28 @@ describe('loader', () => {
         },
       }
     );
+    const stats = await compile(compiler);
+    const codeFromBundle = getExecutedCode('main.bundle.js', compiler, stats);
+
+    expect(codeFromBundle.md).toMatchSnapshot('md');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work when if remark plugin is array', async () => {
+    const compiler = getCompiler('multipleArgs.js', {
+      plugins: [
+        RemarkKbd,
+        [
+          RemarkBookmarks,
+          {
+            bookmarks: {
+              npm: 'https://npmjs.com/package/remark-bookmarks',
+            },
+          },
+        ],
+      ],
+    });
     const stats = await compile(compiler);
     const codeFromBundle = getExecutedCode('main.bundle.js', compiler, stats);
 
