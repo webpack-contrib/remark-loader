@@ -41,7 +41,7 @@ export default function loader(content) {
   const { settings } = options;
 
   if (typeof settings !== 'undefined') {
-    remark.data({ settings });
+    remark.use({ settings });
   }
 
   remark.process(parsed.body, (err, file) => {

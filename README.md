@@ -23,7 +23,7 @@ Simply add the loader to your configuration, and pass options.
 **webpack.config.js**
 
 ```js
-import RemarkKbd from 'remark-kbd';
+import RemarkFrontmatter from 'remark-frontmatter';
 
 module.exports = {
   // ...
@@ -35,7 +35,11 @@ module.exports = {
           {
             loader: 'remark-loader',
             options: {
-              plugins: [RemarkKbd],
+              plugins: [RemarkFrontmatter],
+              settings: {
+                bullet: '+',
+                listItemIndent: '1',
+              },
             },
           },
         ],
@@ -45,32 +49,32 @@ module.exports = {
 };
 ```
 
-Here's the full list of [`remark` plugins][1].
+Here's the full list of [`remark` plugins](https://github.com/wooorm/remark/blob/master/doc/plugins.md).
 
 We no longer support any `react` specific features.
-Please see the wonderful [MDX][8] project if you're interested in mixing JSX with Markdown.
+Please see the wonderful [MDX](https://mdxjs.com/) project if you're interested in mixing JSX with Markdown.
 
 ## Options
 
-|                     Name                      |          Type          |   Default   | Description                             |
-| :-------------------------------------------: | :--------------------: | :---------: | :-------------------------------------- |
-|           **[`plugins`](#plugins)**           | `Array<String\|Array>` |    `[]`     | Allows to connect [`remark` plugins][1] |
-| **[`removeFrontMatter`](#removeFrontMatter)** |      `{Boolean}`       |   `true`    | Remove removeFrontMatter                |
-|          **[`settings`](#settings)**          |       `{Object}`       | `undefined` | Remark settings                         |
+|                     Name                      |          Type          |   Default   | Description                                                                                       |
+| :-------------------------------------------: | :--------------------: | :---------: | :------------------------------------------------------------------------------------------------ |
+|           **[`plugins`](#plugins)**           | `Array<String\|Array>` |    `[]`     | Allows to connect [`remark` plugins](https://github.com/wooorm/remark/blob/master/doc/plugins.md) |
+| **[`removeFrontMatter`](#removeFrontMatter)** |      `{Boolean}`       |   `true`    | Remove removeFrontMatter                                                                          |
+|          **[`settings`](#settings)**          |       `{Object}`       | `undefined` | Remark settings                                                                                   |
 
 ### plugins
 
 Type: `Array<String\|Array>`
 Default: `[]`
 
-Allows to connect [`remark` plugins][1]
+Allows to connect [`remark` plugins](https://github.com/wooorm/remark/blob/master/doc/plugins.md)
 
 #### String
 
 **webpack.config.js**
 
 ```js
-import RemarkKbd from 'remark-kbd';
+import RemarkFrontmatter from 'remark-frontmatter';
 
 module.exports = {
   // ...
@@ -82,7 +86,7 @@ module.exports = {
           {
             loader: 'remark-loader',
             options: {
-              plugins: [RemarkKbd],
+              plugins: [RemarkFrontmatter],
             },
           },
         ],
@@ -99,7 +103,7 @@ If need to specify options for the plugin, can pass the plugin using an array, w
 **webpack.config.js**
 
 ```js
-import RemarkKbd from 'remark-kbd';
+import RemarkFrontmatter from 'remark-frontmatter';
 import RemarkBookmarks from 'remark-bookmarks';
 
 module.exports = {
@@ -113,7 +117,7 @@ module.exports = {
             loader: 'remark-loader',
             options: {
               plugins: [
-                RemarkKbd,
+                RemarkFrontmatter,
                 [
                   RemarkBookmarks,
                   {
@@ -143,7 +147,6 @@ To override this behavior, set `removeFrontMatter` to `false` and add `remark-fr
 **webpack.config.js**
 
 ```js
-import RemarkKbd from 'remark-kbd';
 import RemarkFrontmatter from 'remark-frontmatter';
 
 module.exports = {
@@ -157,7 +160,7 @@ module.exports = {
             loader: 'remark-loader',
             options: {
               removeFrontMatter: false,
-              plugins: [RemarkKbd, RemarkFrontmatter],
+              plugins: [RemarkFrontmatter],
             },
           },
         ],
@@ -172,13 +175,11 @@ module.exports = {
 Type: `Object`
 Default: `undefined`
 
-Pass [`remark-stringify` options][6] and [`remark-parse` options][7] options to the `remark`.
+Pass [`remark-stringify` options](https://github.com/remarkjs/remark/tree/main/packages/remark-stringify#options) and [`remark-parse` options](https://github.com/remarkjs/remark/tree/main/packages/remark-parse#options) options to the `remark`.
 
 **webpack.config.js**
 
 ```js
-import RemarkKbd from 'remark-kbd';
-
 module.exports = {
   // ...
   module: {
@@ -193,7 +194,6 @@ module.exports = {
                 bullet: '+',
                 listItemIndent: '1',
               },
-              plugins: [RemarkKbd],
             },
           },
         ],
@@ -207,14 +207,14 @@ module.exports = {
 
 This project was inspired the following open source work:
 
-- [`react-markdown-loader`][4]
-- [`marksy`][5]
+- [`react-markdown-loader`](https://github.com/javiercf/react-markdown-loader)
+- [`marksy`](https://github.com/cerebral/marksy)
 
 ## Examples
 
 ### Markdown to HTML
 
-To get html, need to add [`remark-html`][2] to the remark plugins and add [`html-loader`][3] to the `webpack.config`
+To get html, need to add [`remark-html`](https://github.com/wooorm/remark-html) to the remark plugins and add [`html-loader`](https://github.com/webpack-contrib/html-loader) to the `webpack.config`
 
 ```js
 import 'markdown-file.md';
@@ -223,7 +223,6 @@ import 'markdown-file.md';
 **webpack.config.js**
 
 ```js
-import RemarkKbd from 'remark-kbd';
 import RemarkHTML from 'remark-html';
 
 module.exports = {
@@ -239,7 +238,7 @@ module.exports = {
           {
             loader: 'remark-loader',
             options: {
-              plugins: [RemarkKbd, RemarkHTML],
+              plugins: [RemarkHTML],
             },
           },
         ],
@@ -260,8 +259,6 @@ import 'markdown-file.md';
 **webpack.config.js**
 
 ```js
-import RemarkKbd from 'remark-kbd';
-
 module.exports = {
   // ...
   module: {
@@ -271,9 +268,6 @@ module.exports = {
         use: [
           {
             loader: 'remark-loader',
-            options: {
-              plugins: [RemarkKbd],
-            },
           },
         ],
       },
@@ -292,14 +286,6 @@ Please take a moment to read our contributing guidelines if you haven't yet done
 
 [MIT](./LICENSE)
 
-[1]: https://github.com/wooorm/remark/blob/master/doc/plugins.md
-[2]: https://github.com/wooorm/remark-html
-[3]: https://github.com/webpack-contrib/html-loader
-[4]: https://github.com/javiercf/react-markdown-loader
-[5]: https://github.com/cerebral/marksy
-[6]: https://github.com/remarkjs/remark/tree/main/packages/remark-stringify#options
-[7]: https://github.com/remarkjs/remark/tree/main/packages/remark-parse#options
-[8]: https://mdxjs.com/
 [npm]: https://img.shields.io/npm/v/remark-loader.svg
 [npm-url]: https://npmjs.com/package/remark-loader
 [node]: https://img.shields.io/node/v/remark-loader.svg
