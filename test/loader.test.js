@@ -3,6 +3,7 @@ import path from 'path';
 import RemarkHTML from 'remark-html';
 import RemarkKbd from 'remark-kbd';
 import RemarkBookmarks from 'remark-bookmarks';
+import RemarkFrontmatter from 'remark-frontmatter';
 
 import {
   compile,
@@ -61,7 +62,7 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  it('should work when if remark plugin is array', async () => {
+  it('should work if remark plugin is array', async () => {
     const compiler = getCompiler('multipleArgs.js', {
       plugins: [
         RemarkKbd,
@@ -74,6 +75,19 @@ describe('loader', () => {
           },
         ],
       ],
+    });
+    const stats = await compile(compiler);
+    const codeFromBundle = getExecutedCode('main.bundle.js', compiler, stats);
+
+    expect(codeFromBundle.md).toMatchSnapshot('md');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should not remove frontmatter', async () => {
+    const compiler = getCompiler('multipleArgs.js', {
+      removeFrontMatter: false,
+      plugins: [RemarkKbd, RemarkFrontmatter],
     });
     const stats = await compile(compiler);
     const codeFromBundle = getExecutedCode('main.bundle.js', compiler, stats);

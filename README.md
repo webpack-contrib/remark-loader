@@ -50,6 +50,122 @@ Here's the full list of [`remark` plugins][1].
 We no longer support any `react` specific features.
 Please see the wonderful [MDX][12] project if you're interested in mixing JSX with Markdown.
 
+## Options
+
+|                     Name                      |          Type          | Default | Description                             |
+| :-------------------------------------------: | :--------------------: | :-----: | :-------------------------------------- |
+|           **[`plugins`](#plugins)**           | `Array<String\|Array>` |  `[]`   | Allows to connect [`remark` plugins][1] |
+| **[`removeFrontMatter`](#removeFrontMatter)** |       `Boolean`        | `true`  | Remove removeFrontMatter                |
+
+### plugins
+
+Type: `Array<String\|Array>`
+Default: `[]`
+
+Allows to connect [`remark` plugins][1]
+
+#### String
+
+**webpack.config.js**
+
+```js
+import RemarkKbd from 'remark-kbd';
+
+module.exports = {
+  // ...
+  module: {
+    rules: [
+      {
+        test: /\.md$/,
+        use: [
+          {
+            loader: 'remark-loader',
+            options: {
+              plugins: [RemarkKbd],
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
+#### Array
+
+If need to specify options for the plugin, can pass the plugin using an array, where the second argument will be options.
+
+**webpack.config.js**
+
+```js
+import RemarkKbd from 'remark-kbd';
+import RemarkBookmarks from 'remark-bookmarks';
+
+module.exports = {
+  // ...
+  module: {
+    rules: [
+      {
+        test: /\.md$/,
+        use: [
+          {
+            loader: 'remark-loader',
+            options: {
+              plugins: [
+                RemarkKbd,
+                [
+                  RemarkBookmarks,
+                  {
+                    bookmarks: {
+                      npm: 'https://npmjs.com/package/remark-bookmarks',
+                    },
+                  },
+                ],
+              ],
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
+### removeFrontMatter
+
+Type: `Boolean`
+Default: `true`
+
+By default, the frontMatter is removed.
+To override this behavior, set `removeFrontMatter` to `false` and add `remark-frontmatter` to plugins.
+
+**webpack.config.js**
+
+```js
+import RemarkKbd from 'remark-kbd';
+import RemarkFrontmatter from 'remark-frontmatter';
+
+module.exports = {
+  // ...
+  module: {
+    rules: [
+      {
+        test: /\.md$/,
+        use: [
+          {
+            loader: 'remark-loader',
+            options: {
+              removeFrontMatter: false,
+              plugins: [RemarkKbd, RemarkFrontmatter],
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
 ## Inspiration
 
 This project was inspired the following open source work:
