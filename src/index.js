@@ -7,7 +7,7 @@ import Report from 'vfile-reporter';
 
 import schema from './options.json';
 
-export default function loader(markdown) {
+export default function loader(content) {
   const options = getOptions(this);
 
   validateOptions(schema, options, {
@@ -18,28 +18,32 @@ export default function loader(markdown) {
   const callback = this.async();
 
   const { plugins = [] } = options;
-  const parsed = FrontMatter(markdown);
+  const parsed = FrontMatter(content);
 
-  plugins
-    .reduce((remark, item) => {
-      if (Array.isArray(item)) {
-        return remark.use.apply(null, item);
-      }
+  const remark = Remark();
 
-      return remark.use(item);
-    }, Remark())
-    .process(parsed.body, (err, file) => {
-      const result = {
-        content: file.contents,
-        attributes: parsed.attributes,
-      };
+  for (const item of plugins) {
+    if (Array.isArray(item)) {
+      const [plugin, pluginOptions] = item;
 
-      if (err) {
-        callback(Report(err || file));
+      remark.use(plugin, pluginOptions);
+    } else {
+      remark.use(item);
+    }
+  }
 
-        return;
-      }
+  remark.process(parsed.body, (err, file) => {
+    const result = {
+      content: file.contents,
+      attributes: parsed.attributes,
+    };
 
-      callback(null, result.content);
-    });
+    if (err) {
+      callback(Report(err || file));
+
+      return;
+    }
+
+    callback(null, result.content);
+  });
 }
