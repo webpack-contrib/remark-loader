@@ -48,14 +48,15 @@ module.exports = {
 Here's the full list of [`remark` plugins][1].
 
 We no longer support any `react` specific features.
-Please see the wonderful [MDX][12] project if you're interested in mixing JSX with Markdown.
+Please see the wonderful [MDX][8] project if you're interested in mixing JSX with Markdown.
 
 ## Options
 
-|                     Name                      |          Type          | Default | Description                             |
-| :-------------------------------------------: | :--------------------: | :-----: | :-------------------------------------- |
-|           **[`plugins`](#plugins)**           | `Array<String\|Array>` |  `[]`   | Allows to connect [`remark` plugins][1] |
-| **[`removeFrontMatter`](#removeFrontMatter)** |       `Boolean`        | `true`  | Remove removeFrontMatter                |
+|                     Name                      |          Type          |   Default   | Description                             |
+| :-------------------------------------------: | :--------------------: | :---------: | :-------------------------------------- |
+|           **[`plugins`](#plugins)**           | `Array<String\|Array>` |    `[]`     | Allows to connect [`remark` plugins][1] |
+| **[`removeFrontMatter`](#removeFrontMatter)** |      `{Boolean}`       |   `true`    | Remove removeFrontMatter                |
+|          **[`settings`](#settings)**          |       `{Object}`       | `undefined` | Remark settings                         |
 
 ### plugins
 
@@ -166,18 +167,54 @@ module.exports = {
 };
 ```
 
+### settings
+
+Type: `Object`
+Default: `undefined`
+
+Pass [`remark-stringify` options][6] and [`remark-parse` options][7] options to the `remark`.
+
+**webpack.config.js**
+
+```js
+import RemarkKbd from 'remark-kbd';
+
+module.exports = {
+  // ...
+  module: {
+    rules: [
+      {
+        test: /\.md$/,
+        use: [
+          {
+            loader: 'remark-loader',
+            options: {
+              settings: {
+                bullet: '+',
+                listItemIndent: '1',
+              },
+              plugins: [RemarkKbd],
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
 ## Inspiration
 
 This project was inspired the following open source work:
 
-- [`react-markdown-loader`][6]
-- [`marksy`][7]
+- [`react-markdown-loader`][4]
+- [`marksy`][5]
 
 ## Examples
 
 ### Markdown to HTML
 
-To get html, need to add [`remark-html`][3] to the remark plugins and add [`html-loader`][5] to the `webpack.config`
+To get html, need to add [`remark-html`][2] to the remark plugins and add [`html-loader`][3] to the `webpack.config`
 
 ```js
 import 'markdown-file.md';
@@ -256,17 +293,13 @@ Please take a moment to read our contributing guidelines if you haven't yet done
 [MIT](./LICENSE)
 
 [1]: https://github.com/wooorm/remark/blob/master/doc/plugins.md
-[2]: https://github.com/skipjack/remark-loader/issues
-[3]: https://github.com/wooorm/remark-html
-[4]: https://github.com/mapbox/remark-react
-[5]: https://github.com/webpack-contrib/html-loader
-[6]: https://github.com/javiercf/react-markdown-loader
-[7]: https://github.com/cerebral/marksy
-[8]: https://www.npmjs.com/package/remark-loader
-[9]: https://github.com/conventional-changelog/standard-version
-[10]: https://img.shields.io/npm/v/remark-loader.svg
-[11]: https://img.shields.io/badge/release-standard%20version-brightgreen.svg
-[12]: https://mdxjs.com/
+[2]: https://github.com/wooorm/remark-html
+[3]: https://github.com/webpack-contrib/html-loader
+[4]: https://github.com/javiercf/react-markdown-loader
+[5]: https://github.com/cerebral/marksy
+[6]: https://github.com/remarkjs/remark/tree/main/packages/remark-stringify#options
+[7]: https://github.com/remarkjs/remark/tree/main/packages/remark-parse#options
+[8]: https://mdxjs.com/
 [npm]: https://img.shields.io/npm/v/remark-loader.svg
 [npm-url]: https://npmjs.com/package/remark-loader
 [node]: https://img.shields.io/node/v/remark-loader.svg

@@ -96,4 +96,20 @@ describe('loader', () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
+
+  it('should work settings option', async () => {
+    const compiler = getCompiler('multipleArgs.js', {
+      plugins: [RemarkKbd],
+      settings: {
+        bullet: '+',
+        listItemIndent: '1',
+      },
+    });
+    const stats = await compile(compiler);
+    const codeFromBundle = getExecutedCode('main.bundle.js', compiler, stats);
+
+    expect(codeFromBundle.md).toMatchSnapshot('md');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
 });

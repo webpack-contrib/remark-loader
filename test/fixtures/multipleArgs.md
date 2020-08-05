@@ -9,3 +9,8 @@ meta: some meta data
 Test content.
 
 `remark-bookmarks` is on [npm][]!
+
+Example list:
+- item 1
+- item 2
+- item 3
