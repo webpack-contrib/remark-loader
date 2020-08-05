@@ -3,8 +3,10 @@
   "additionalProperties": false,
   "properties": {
     "plugins": {
-      "type": "array",
-      "minItems": 1
+      "type": "array"
+    },
+    "removeFrontMatter": {
+      "type": "boolean"
     }
   }
 }

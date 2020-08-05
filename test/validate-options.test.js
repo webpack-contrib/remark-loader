@@ -7,6 +7,10 @@ describe('validate options', () => {
       success: [[require('remark-kbd')]],
       failure: [true, 'test', () => {}, /test/],
     },
+    removeFrontMatter: {
+      success: [true, false],
+      failure: ['true', 'test', () => {}, /test/],
+    },
     unknown: {
       success: [],
       failure: [1, true, false, 'test', /test/, [], {}, { foo: 'bar' }],

@@ -17,10 +17,16 @@ export default function loader(content) {
 
   const callback = this.async();
 
-  const { plugins = [] } = options;
-  const parsed = FrontMatter(content);
+  const removeFrontMatter =
+    typeof options.removeFrontMatter !== 'undefined'
+      ? options.removeFrontMatter
+      : true;
+
+  const parsed = removeFrontMatter ? FrontMatter(content) : { body: content };
 
   const remark = Remark();
+
+  const { plugins = [] } = options;
 
   for (const item of plugins) {
     if (Array.isArray(item)) {
