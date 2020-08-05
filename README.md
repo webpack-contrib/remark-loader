@@ -23,6 +23,8 @@ Simply add the loader to your configuration, and pass options.
 **webpack.config.js**
 
 ```js
+import RemarkKbd from 'remark-kbd';
+
 module.exports = {
   // ...
   module: {
@@ -33,7 +35,7 @@ module.exports = {
           {
             loader: 'remark-loader',
             options: {
-              plugins: [require('remark-kbd')],
+              plugins: [RemarkKbd],
             },
           },
         ],
@@ -43,14 +45,10 @@ module.exports = {
 };
 ```
 
-Here's the full list of [`remark` plugins][1]. Note that [`remark-html`][3]
-is always included as the last plugin and should not be included in the
-`plugins` list.
+Here's the full list of [`remark` plugins][1].
 
-> This loader makes use of the [`html-loader`][5] under the hood.
-
-We no longer support any `react` specific features. Please see the wonderful
-[MDX][12] project if you're interested in mixing JSX with Markdown.
+We no longer support any `react` specific features.
+Please see the wonderful [MDX][12] project if you're interested in mixing JSX with Markdown.
 
 ## Inspiration
 
@@ -58,6 +56,78 @@ This project was inspired the following open source work:
 
 - [`react-markdown-loader`][6]
 - [`marksy`][7]
+
+## Examples
+
+### Markdown to HTML
+
+To get html, need to add [`remark-html`][3] to the remark plugins and add [`html-loader`][5] to the `webpack.config`
+
+```js
+import 'markdown-file.md';
+```
+
+**webpack.config.js**
+
+```js
+import RemarkKbd from 'remark-kbd';
+import RemarkHTML from 'remark-html';
+
+module.exports = {
+  // ...
+  module: {
+    rules: [
+      {
+        test: /\.md$/,
+        use: [
+          {
+            loader: 'html-loader',
+          },
+          {
+            loader: 'remark-loader',
+            options: {
+              plugins: [RemarkKbd, RemarkHTML],
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
+### Markdown to Markdown
+
+**index.js**
+
+```js
+import 'markdown-file.md';
+```
+
+**webpack.config.js**
+
+```js
+import RemarkKbd from 'remark-kbd';
+
+module.exports = {
+  // ...
+  module: {
+    rules: [
+      {
+        test: /\.md$/,
+        use: [
+          {
+            loader: 'remark-loader',
+            options: {
+              plugins: [RemarkKbd],
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
 
 ## Contributing
 

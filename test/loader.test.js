@@ -1,6 +1,7 @@
 import path from 'path';
 
 import RemarkHTML from 'remark-html';
+import RemarkKbd from 'remark-kbd';
 
 import {
   compile,
@@ -14,7 +15,7 @@ describe('loader', () => {
   it('should work markdown -> markdown', async () => {
     const compiler = getCompiler('simple.js', {
       // eslint-disable-next-line global-require
-      plugins: [require('remark-kbd')],
+      plugins: [RemarkKbd],
     });
     const stats = await compile(compiler);
     const codeFromBundle = getExecutedCode('main.bundle.js', compiler, stats);
@@ -44,7 +45,7 @@ describe('loader', () => {
                   loader: path.resolve(__dirname, '../src'),
                   options: {
                     // eslint-disable-next-line global-require
-                    plugins: [require('remark-kbd'), RemarkHTML],
+                    plugins: [RemarkKbd, RemarkHTML],
                   },
                 },
               ],
