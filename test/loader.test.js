@@ -1,7 +1,6 @@
 import path from 'path';
 
 import RemarkHTML from 'remark-html';
-import RemarkKbd from 'remark-kbd';
 import RemarkBookmarks from 'remark-bookmarks';
 import RemarkFrontmatter from 'remark-frontmatter';
 
@@ -15,9 +14,7 @@ import {
 
 describe('loader', () => {
   it('should work markdown to markdown', async () => {
-    const compiler = getCompiler('simple.js', {
-      plugins: [RemarkKbd],
-    });
+    const compiler = getCompiler('simple.js');
     const stats = await compile(compiler);
     const codeFromBundle = getExecutedCode('main.bundle.js', compiler, stats);
 
@@ -45,7 +42,7 @@ describe('loader', () => {
                 {
                   loader: path.resolve(__dirname, '../src'),
                   options: {
-                    plugins: [RemarkKbd, RemarkHTML],
+                    plugins: [RemarkHTML],
                   },
                 },
               ],
@@ -65,7 +62,6 @@ describe('loader', () => {
   it('should work if remark plugin is array', async () => {
     const compiler = getCompiler('multipleArgs.js', {
       plugins: [
-        RemarkKbd,
         [
           RemarkBookmarks,
           {
@@ -87,7 +83,41 @@ describe('loader', () => {
   it('should not remove frontmatter', async () => {
     const compiler = getCompiler('multipleArgs.js', {
       removeFrontMatter: false,
-      plugins: [RemarkKbd, RemarkFrontmatter],
+      plugins: [RemarkFrontmatter],
+    });
+    const stats = await compile(compiler);
+    const codeFromBundle = getExecutedCode('main.bundle.js', compiler, stats);
+
+    expect(codeFromBundle.md).toMatchSnapshot('md');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work settings option', async () => {
+    const compiler = getCompiler('multipleArgs.js', {
+      settings: {
+        bullet: '+',
+        listItemIndent: '1',
+      },
+    });
+    const stats = await compile(compiler);
+    const codeFromBundle = getExecutedCode('main.bundle.js', compiler, stats);
+
+    expect(codeFromBundle.md).toMatchSnapshot('md');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work settings option in plugins', async () => {
+    const compiler = getCompiler('multipleArgs.js', {
+      plugins: [
+        {
+          settings: {
+            bullet: '+',
+            listItemIndent: '1',
+          },
+        },
+      ],
     });
     const stats = await compile(compiler);
     const codeFromBundle = getExecutedCode('main.bundle.js', compiler, stats);

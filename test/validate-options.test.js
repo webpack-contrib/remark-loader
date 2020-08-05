@@ -11,6 +11,15 @@ describe('validate options', () => {
       success: [true, false],
       failure: ['true', 'test', () => {}, /test/],
     },
+    settings: {
+      success: [
+        {
+          bullet: '+',
+          listItemIndent: '1',
+        },
+      ],
+      failure: [1, true, false, 'test', []],
+    },
     unknown: {
       success: [],
       failure: [1, true, false, 'test', /test/, [], {}, { foo: 'bar' }],

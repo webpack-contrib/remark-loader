@@ -7,6 +7,10 @@
     },
     "removeFrontMatter": {
       "type": "boolean"
+    },
+    "settings": {
+      "type": "object",
+      "additionalProperties": true
     }
   }
 }
