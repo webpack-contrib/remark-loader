@@ -20,6 +20,15 @@ describe('validate options', () => {
       ],
       failure: [1, true, false, 'test', []],
     },
+    data: {
+      success: [
+        {
+          alpha: 'bravo',
+          charlie: 'delta',
+        },
+      ],
+      failure: [1, true, false, 'test', []],
+    },
     unknown: {
       success: [],
       failure: [1, true, false, 'test', /test/, [], {}, { foo: 'bar' }],

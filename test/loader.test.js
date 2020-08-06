@@ -126,4 +126,30 @@ describe('loader', () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
+
+  it('should work data option', async () => {
+    let alpha;
+    let charlie;
+
+    function extractDataPlugin() {
+      alpha = this.data('alpha');
+      charlie = this.data('charlie');
+    }
+
+    const compiler = getCompiler('multipleArgs.js', {
+      plugins: [extractDataPlugin],
+      data: {
+        alpha: 'bravo',
+        charlie: 'delta',
+      },
+    });
+    const stats = await compile(compiler);
+    const codeFromBundle = getExecutedCode('main.bundle.js', compiler, stats);
+
+    expect(alpha).toEqual('bravo');
+    expect(charlie).toEqual('delta');
+    expect(codeFromBundle.md).toMatchSnapshot('md');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
 });
