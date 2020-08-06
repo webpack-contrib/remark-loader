@@ -1,5 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`validate options should throw an error on the "data" option with "[]" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options.data should be an object:
+   object { … }"
+`;
+
+exports[`validate options should throw an error on the "data" option with "1" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options.data should be an object:
+   object { … }"
+`;
+
+exports[`validate options should throw an error on the "data" option with "false" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options.data should be an object:
+   object { … }"
+`;
+
+exports[`validate options should throw an error on the "data" option with "test" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options.data should be an object:
+   object { … }"
+`;
+
+exports[`validate options should throw an error on the "data" option with "true" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options.data should be an object:
+   object { … }"
+`;
+
 exports[`validate options should throw an error on the "plugins" option with "() => {}" value 1`] = `
 "Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
  - options.plugins should be an array:
@@ -77,47 +107,47 @@ exports[`validate options should throw an error on the "settings" option with "t
 exports[`validate options should throw an error on the "unknown" option with "/test/" value 1`] = `
 "Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { plugins?, removeFrontMatter?, settings? }"
+   object { plugins?, removeFrontMatter?, settings?, data? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "[]" value 1`] = `
 "Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { plugins?, removeFrontMatter?, settings? }"
+   object { plugins?, removeFrontMatter?, settings?, data? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "{"foo":"bar"}" value 1`] = `
 "Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { plugins?, removeFrontMatter?, settings? }"
+   object { plugins?, removeFrontMatter?, settings?, data? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "{}" value 1`] = `
 "Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { plugins?, removeFrontMatter?, settings? }"
+   object { plugins?, removeFrontMatter?, settings?, data? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "1" value 1`] = `
 "Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { plugins?, removeFrontMatter?, settings? }"
+   object { plugins?, removeFrontMatter?, settings?, data? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "false" value 1`] = `
 "Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { plugins?, removeFrontMatter?, settings? }"
+   object { plugins?, removeFrontMatter?, settings?, data? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "test" value 1`] = `
 "Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { plugins?, removeFrontMatter?, settings? }"
+   object { plugins?, removeFrontMatter?, settings?, data? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "true" value 1`] = `
 "Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { plugins?, removeFrontMatter?, settings? }"
+   object { plugins?, removeFrontMatter?, settings?, data? }"
 `;

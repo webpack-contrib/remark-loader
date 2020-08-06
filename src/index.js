@@ -38,10 +38,14 @@ export default function loader(content) {
     }
   }
 
-  const { settings } = options;
+  const { settings, data } = options;
 
   if (typeof settings !== 'undefined') {
     remark.use({ settings });
+  }
+
+  if (typeof data !== 'undefined') {
+    remark.data(data);
   }
 
   remark.process(parsed.body, (err, file) => {

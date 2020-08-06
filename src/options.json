@@ -11,6 +11,10 @@
     "settings": {
       "type": "object",
       "additionalProperties": true
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": true
     }
   }
 }

@@ -61,6 +61,7 @@ Please see the wonderful [MDX](https://mdxjs.com/) project if you're interested 
 |           **[`plugins`](#plugins)**           | `Array<String\|Array>` |    `[]`     | Allows to connect [`remark` plugins](https://github.com/wooorm/remark/blob/master/doc/plugins.md) |
 | **[`removeFrontMatter`](#removeFrontMatter)** |      `{Boolean}`       |   `true`    | Remove removeFrontMatter                                                                          |
 |          **[`settings`](#settings)**          |       `{Object}`       | `undefined` | Remark settings                                                                                   |
+|              **[`data`](#data)**              |       `{Object}`       | `undefined` | Information available to all plugins                                                              |
 
 ### plugins
 
@@ -193,6 +194,46 @@ module.exports = {
               settings: {
                 bullet: '+',
                 listItemIndent: '1',
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
+### data
+
+Type: `Object`
+Default: `undefined`
+
+Configure the [`remark`](https://github.com/unifiedjs/unified#processordatakey-value) with information available to all plugins.
+Information is stored in an in-memory key-value store.
+
+**webpack.config.js**
+
+```js
+function examplePluginUsingData() {
+  console.log(this.data);
+  // { alpha: 'bravo', charlie: 'delta' }
+}
+
+module.exports = {
+  // ...
+  module: {
+    rules: [
+      {
+        test: /\.md$/,
+        use: [
+          {
+            loader: 'remark-loader',
+            options: {
+              plugins: [examplePluginUsingData],
+              data: {
+                alpha: 'bravo',
+                charlie: 'delta',
               },
             },
           },
