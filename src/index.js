@@ -48,18 +48,22 @@ export default function loader(content) {
     remark.data(data);
   }
 
-  remark.process(parsed.body, (err, file) => {
-    const result = {
-      content: file.contents,
-      attributes: parsed.attributes,
-    };
+  try {
+    remark.process(parsed.body, (err, file) => {
+      if (err) {
+        callback(Report(err));
 
-    if (err) {
-      callback(Report(err || file));
+        return;
+      }
 
-      return;
-    }
+      const result = {
+        content: file.contents,
+        attributes: parsed.attributes,
+      };
 
-    callback(null, result.content);
-  });
+      callback(null, result.content);
+    });
+  } catch (error) {
+    callback(error);
+  }
 }

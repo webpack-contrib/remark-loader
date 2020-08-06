@@ -152,4 +152,32 @@ describe('loader', () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
+
+  it('should throw error #1', async () => {
+    const compiler = getCompiler('multipleArgs.js', {
+      removeFrontMatter: false,
+      plugins: [[RemarkFrontmatter, { marker: '*' }]],
+    });
+
+    const stats = await compile(compiler);
+
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should throw error #2', async () => {
+    const errorGenerationPlugin = () => () => {
+      throw new Error('Error');
+    };
+
+    const compiler = getCompiler('multipleArgs.js', {
+      removeFrontMatter: false,
+      plugins: [errorGenerationPlugin],
+    });
+
+    const stats = await compile(compiler);
+
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
 });
