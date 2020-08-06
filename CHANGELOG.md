@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/webpack-contrib/remark-loader/compare/v1.0.0-rc.0...v1.0.0) (2020-08-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* minimum required `Node.js` version is `10.13.0`
+* minimum required webpack version is `4`
+* loader doesn't return HTML, you need to use `html-loader`, please look at 
+* update `remark` to `12.0.0` version, some plugins can be incompatible, please update them
+
+
+### Features
+
+* added `remarkOptions` option, you can specify `plugins`, `settings` and `data`
+* added `removeFrontMatter` option ([#19](https://github.com/webpack-contrib/remark-loader/issues/19)) ([3550105](https://github.com/webpack-contrib/remark-loader/commit/3550105c774caa9aa4f4fc58e6fa23b5eb30c332))
+* validate options by default ([c6b6ed2](https://github.com/webpack-contrib/remark-loader/commit/c6b6ed2f18f89c085a80ebe0db6d7adbfcc26e26))
+
+
+### Bug Fixes
+
+* improved performance
+
+
 <a name="1.0.0-rc.0"></a>
 # [1.0.0-rc.0](https://github.com/skipjack/remark-loader/compare/v0.3.2...v1.0.0-rc.0) (2019-06-10)
 
