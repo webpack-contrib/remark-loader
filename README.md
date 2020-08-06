@@ -35,10 +35,12 @@ module.exports = {
           {
             loader: 'remark-loader',
             options: {
-              plugins: [RemarkFrontmatter],
-              settings: {
-                bullet: '+',
-                listItemIndent: '1',
+              remarkOptions: {
+                plugins: [RemarkFrontmatter],
+                settings: {
+                  bullet: '+',
+                  listItemIndent: '1',
+                },
               },
             },
           },
@@ -56,21 +58,27 @@ Please see the wonderful [MDX](https://mdxjs.com/) project if you're interested 
 
 ## Options
 
-|                     Name                      |          Type          |   Default   | Description                                                                                       |
-| :-------------------------------------------: | :--------------------: | :---------: | :------------------------------------------------------------------------------------------------ |
-|           **[`plugins`](#plugins)**           | `Array<String\|Array>` |    `[]`     | Allows to connect [`remark` plugins](https://github.com/wooorm/remark/blob/master/doc/plugins.md) |
-| **[`removeFrontMatter`](#removeFrontMatter)** |      `{Boolean}`       |   `true`    | Remove removeFrontMatter                                                                          |
-|          **[`settings`](#settings)**          |       `{Object}`       | `undefined` | Remark settings                                                                                   |
-|              **[`data`](#data)**              |       `{Object}`       | `undefined` | Information available to all plugins                                                              |
+|                     Name                      |    Type     | Default | Description              |
+| :-------------------------------------------: | :---------: | :-----: | :----------------------- |
+|     **[`remarkOptions`](#remarkOptions)**     | `{Object}`  |  `{}`   | Remark options           |
+| **[`removeFrontMatter`](#removeFrontMatter)** | `{Boolean}` | `true`  | Remove removeFrontMatter |
 
-### plugins
+### remarkOptions
+
+|            Name             |          Type          |   Default   | Description                                                                                       |
+| :-------------------------: | :--------------------: | :---------: | :------------------------------------------------------------------------------------------------ |
+|  **[`plugins`](#plugins)**  | `Array<String\|Array>` |    `[]`     | Allows to connect [`remark` plugins](https://github.com/wooorm/remark/blob/master/doc/plugins.md) |
+| **[`settings`](#settings)** |       `{Object}`       | `undefined` | Remark settings                                                                                   |
+|     **[`data`](#data)**     |       `{Object}`       | `undefined` | Information available to all plugins                                                              |
+
+#### plugins
 
 Type: `Array<String\|Array>`
 Default: `[]`
 
 Allows to connect [`remark` plugins](https://github.com/wooorm/remark/blob/master/doc/plugins.md)
 
-#### String
+##### String
 
 **webpack.config.js**
 
@@ -87,7 +95,9 @@ module.exports = {
           {
             loader: 'remark-loader',
             options: {
-              plugins: [RemarkFrontmatter],
+              remarkOptions: {
+                plugins: [RemarkFrontmatter],
+              },
             },
           },
         ],
@@ -97,7 +107,7 @@ module.exports = {
 };
 ```
 
-#### Array
+##### Array
 
 If need to specify options for the plugin, can pass the plugin using an array, where the second argument will be options.
 
@@ -117,17 +127,96 @@ module.exports = {
           {
             loader: 'remark-loader',
             options: {
-              plugins: [
-                RemarkFrontmatter,
-                [
-                  RemarkBookmarks,
-                  {
-                    bookmarks: {
-                      npm: 'https://npmjs.com/package/remark-bookmarks',
+              remarkOptions: {
+                plugins: [
+                  RemarkFrontmatter,
+                  [
+                    RemarkBookmarks,
+                    {
+                      bookmarks: {
+                        npm: 'https://npmjs.com/package/remark-bookmarks',
+                      },
                     },
-                  },
+                  ],
                 ],
-              ],
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
+#### settings
+
+Type: `Object`
+Default: `undefined`
+
+Pass [`remark-stringify` options](https://github.com/remarkjs/remark/tree/main/packages/remark-stringify#options) and [`remark-parse` options](https://github.com/remarkjs/remark/tree/main/packages/remark-parse#options) options to the `remark`.
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  // ...
+  module: {
+    rules: [
+      {
+        test: /\.md$/,
+        use: [
+          {
+            loader: 'remark-loader',
+            options: {
+              remarkOptions: {
+                settings: {
+                  bullet: '+',
+                  listItemIndent: '1',
+                },
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
+#### data
+
+Type: `Object`
+Default: `undefined`
+
+Configure the [`remark`](https://github.com/unifiedjs/unified#processordatakey-value) with information available to all plugins.
+Information is stored in an in-memory key-value store.
+
+**webpack.config.js**
+
+```js
+function examplePluginUsingData() {
+  console.log(this.data);
+  // { alpha: 'bravo', charlie: 'delta' }
+}
+
+module.exports = {
+  // ...
+  module: {
+    rules: [
+      {
+        test: /\.md$/,
+        use: [
+          {
+            loader: 'remark-loader',
+            options: {
+              remarkOptions: {
+                plugins: [examplePluginUsingData],
+                data: {
+                  alpha: 'bravo',
+                  charlie: 'delta',
+                },
+              },
             },
           },
         ],
@@ -161,79 +250,8 @@ module.exports = {
             loader: 'remark-loader',
             options: {
               removeFrontMatter: false,
-              plugins: [RemarkFrontmatter],
-            },
-          },
-        ],
-      },
-    ],
-  },
-};
-```
-
-### settings
-
-Type: `Object`
-Default: `undefined`
-
-Pass [`remark-stringify` options](https://github.com/remarkjs/remark/tree/main/packages/remark-stringify#options) and [`remark-parse` options](https://github.com/remarkjs/remark/tree/main/packages/remark-parse#options) options to the `remark`.
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  // ...
-  module: {
-    rules: [
-      {
-        test: /\.md$/,
-        use: [
-          {
-            loader: 'remark-loader',
-            options: {
-              settings: {
-                bullet: '+',
-                listItemIndent: '1',
-              },
-            },
-          },
-        ],
-      },
-    ],
-  },
-};
-```
-
-### data
-
-Type: `Object`
-Default: `undefined`
-
-Configure the [`remark`](https://github.com/unifiedjs/unified#processordatakey-value) with information available to all plugins.
-Information is stored in an in-memory key-value store.
-
-**webpack.config.js**
-
-```js
-function examplePluginUsingData() {
-  console.log(this.data);
-  // { alpha: 'bravo', charlie: 'delta' }
-}
-
-module.exports = {
-  // ...
-  module: {
-    rules: [
-      {
-        test: /\.md$/,
-        use: [
-          {
-            loader: 'remark-loader',
-            options: {
-              plugins: [examplePluginUsingData],
-              data: {
-                alpha: 'bravo',
-                charlie: 'delta',
+              remarkOptions: {
+                plugins: [RemarkFrontmatter],
               },
             },
           },
@@ -279,7 +297,9 @@ module.exports = {
           {
             loader: 'remark-loader',
             options: {
-              plugins: [RemarkHTML],
+              remarkOptions: {
+                plugins: [RemarkHTML],
+              },
             },
           },
         ],

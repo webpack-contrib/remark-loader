@@ -26,7 +26,9 @@ export default function loader(content) {
 
   const remark = Remark();
 
-  const { plugins = [] } = options;
+  const { remarkOptions = {} } = options;
+
+  const { plugins = [] } = remarkOptions;
 
   for (const item of plugins) {
     if (Array.isArray(item)) {
@@ -38,7 +40,7 @@ export default function loader(content) {
     }
   }
 
-  const { settings, data } = options;
+  const { settings, data } = remarkOptions;
 
   if (typeof settings !== 'undefined') {
     remark.use({ settings });

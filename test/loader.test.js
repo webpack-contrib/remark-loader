@@ -42,7 +42,9 @@ describe('loader', () => {
                 {
                   loader: path.resolve(__dirname, '../src'),
                   options: {
-                    plugins: [RemarkHTML],
+                    remarkOptions: {
+                      plugins: [RemarkHTML],
+                    },
                   },
                 },
               ],
@@ -61,16 +63,18 @@ describe('loader', () => {
 
   it('should work if remark plugin is array', async () => {
     const compiler = getCompiler('multipleArgs.js', {
-      plugins: [
-        [
-          RemarkBookmarks,
-          {
-            bookmarks: {
-              npm: 'https://npmjs.com/package/remark-bookmarks',
+      remarkOptions: {
+        plugins: [
+          [
+            RemarkBookmarks,
+            {
+              bookmarks: {
+                npm: 'https://npmjs.com/package/remark-bookmarks',
+              },
             },
-          },
+          ],
         ],
-      ],
+      },
     });
     const stats = await compile(compiler);
     const codeFromBundle = getExecutedCode('main.bundle.js', compiler, stats);
@@ -83,7 +87,9 @@ describe('loader', () => {
   it('should not remove frontmatter', async () => {
     const compiler = getCompiler('multipleArgs.js', {
       removeFrontMatter: false,
-      plugins: [RemarkFrontmatter],
+      remarkOptions: {
+        plugins: [RemarkFrontmatter],
+      },
     });
     const stats = await compile(compiler);
     const codeFromBundle = getExecutedCode('main.bundle.js', compiler, stats);
@@ -95,9 +101,11 @@ describe('loader', () => {
 
   it('should work settings option', async () => {
     const compiler = getCompiler('multipleArgs.js', {
-      settings: {
-        bullet: '+',
-        listItemIndent: '1',
+      remarkOptions: {
+        settings: {
+          bullet: '+',
+          listItemIndent: '1',
+        },
       },
     });
     const stats = await compile(compiler);
@@ -110,14 +118,16 @@ describe('loader', () => {
 
   it('should work settings option in plugins', async () => {
     const compiler = getCompiler('multipleArgs.js', {
-      plugins: [
-        {
-          settings: {
-            bullet: '+',
-            listItemIndent: '1',
+      remarkOptions: {
+        plugins: [
+          {
+            settings: {
+              bullet: '+',
+              listItemIndent: '1',
+            },
           },
-        },
-      ],
+        ],
+      },
     });
     const stats = await compile(compiler);
     const codeFromBundle = getExecutedCode('main.bundle.js', compiler, stats);
@@ -137,10 +147,12 @@ describe('loader', () => {
     }
 
     const compiler = getCompiler('multipleArgs.js', {
-      plugins: [extractDataPlugin],
-      data: {
-        alpha: 'bravo',
-        charlie: 'delta',
+      remarkOptions: {
+        plugins: [extractDataPlugin],
+        data: {
+          alpha: 'bravo',
+          charlie: 'delta',
+        },
       },
     });
     const stats = await compile(compiler);
@@ -156,7 +168,9 @@ describe('loader', () => {
   it('should throw error #1', async () => {
     const compiler = getCompiler('multipleArgs.js', {
       removeFrontMatter: false,
-      plugins: [[RemarkFrontmatter, { marker: '*' }]],
+      remarkOptions: {
+        plugins: [[RemarkFrontmatter, { marker: '*' }]],
+      },
     });
 
     const stats = await compile(compiler);
@@ -172,7 +186,9 @@ describe('loader', () => {
 
     const compiler = getCompiler('multipleArgs.js', {
       removeFrontMatter: false,
-      plugins: [errorGenerationPlugin],
+      remarkOptions: {
+        plugins: [errorGenerationPlugin],
+      },
     });
 
     const stats = await compile(compiler);

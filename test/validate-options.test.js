@@ -2,32 +2,30 @@ import { getCompiler, compile } from './helpers';
 
 describe('validate options', () => {
   const tests = {
-    plugins: {
-      // eslint-disable-next-line global-require
-      success: [[require('remark-kbd')]],
-      failure: [true, 'test', () => {}, /test/],
+    remarkOptions: {
+      success: [
+        {
+          // eslint-disable-next-line global-require
+          plugins: [require('remark-kbd')],
+        },
+        {
+          settings: {
+            bullet: '+',
+            listItemIndent: '1',
+          },
+        },
+        {
+          data: {
+            alpha: 'bravo',
+            charlie: 'delta',
+          },
+        },
+      ],
+      failure: [true, 'test', () => {}, [], { unknown: false }],
     },
     removeFrontMatter: {
       success: [true, false],
       failure: ['true', 'test', () => {}, /test/],
-    },
-    settings: {
-      success: [
-        {
-          bullet: '+',
-          listItemIndent: '1',
-        },
-      ],
-      failure: [1, true, false, 'test', []],
-    },
-    data: {
-      success: [
-        {
-          alpha: 'bravo',
-          charlie: 'delta',
-        },
-      ],
-      failure: [1, true, false, 'test', []],
     },
     unknown: {
       success: [],
