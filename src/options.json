@@ -2,19 +2,25 @@
   "type": "object",
   "additionalProperties": false,
   "properties": {
-    "plugins": {
-      "type": "array"
+    "remarkOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "plugins": {
+          "type": "array"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
     },
     "removeFrontMatter": {
       "type": "boolean"
-    },
-    "settings": {
-      "type": "object",
-      "additionalProperties": true
-    },
-    "data": {
-      "type": "object",
-      "additionalProperties": true
     }
   }
 }
