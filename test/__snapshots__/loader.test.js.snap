@@ -25,6 +25,24 @@ Example list:
 
 exports[`loader should not remove frontmatter: warnings 1`] = `Array []`;
 
+exports[`loader should throw error #1: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: Missing \`type\` in matter \`{\\"marker\\":\\"*\\"}\`",
+]
+`;
+
+exports[`loader should throw error #1: warnings 1`] = `Array []`;
+
+exports[`loader should throw error #2: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+NonErrorEmittedError: (Emitted value instead of an instance of Error) Error: Error",
+]
+`;
+
+exports[`loader should throw error #2: warnings 1`] = `Array []`;
+
 exports[`loader should work data option: errors 1`] = `Array []`;
 
 exports[`loader should work data option: md 1`] = `
