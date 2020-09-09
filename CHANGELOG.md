@@ -9,7 +9,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 * minimum required `Node.js` version is `10.13.0`
 * minimum required webpack version is `4`
-* loader doesn't return HTML, you need to use `html-loader`, please look at 
+* loader doesn't return HTML, you need to use `html-loader`, please look at [this example](https://github.com/webpack-contrib/remark-loader#markdown-to-html)
 * update `remark` to `12.0.0` version, some plugins can be incompatible, please update them
 
 
