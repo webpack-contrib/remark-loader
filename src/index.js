@@ -1,6 +1,6 @@
 import { getOptions } from 'loader-utils';
 
-import validateOptions from 'schema-utils';
+import { validate } from 'schema-utils';
 import frontMatter from 'front-matter';
 import remark from 'remark';
 import Report from 'vfile-reporter';
@@ -10,7 +10,7 @@ import schema from './options.json';
 export default function loader(content) {
   const options = getOptions(this);
 
-  validateOptions(schema, options, {
+  validate(schema, options, {
     name: 'Remark Loader',
     baseDataPath: 'options',
   });
