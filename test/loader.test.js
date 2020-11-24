@@ -19,8 +19,6 @@ describe("loader", () => {
     const stats = await compile(compiler);
     const codeFromBundle = getExecutedCode("main.bundle.js", compiler, stats);
 
-    console.log(codeFromBundle);
-
     expect(codeFromBundle.md).toMatchSnapshot("md");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
