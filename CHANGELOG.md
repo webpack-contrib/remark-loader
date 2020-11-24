@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/webpack-contrib/remark-loader/compare/v1.0.1...v2.0.0) (2020-11-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* `remark` is now in peer dependencies , so you need to install `remark` itself, please read `remark` [changelog](https://github.com/remarkjs/remark/releases) before updating `remark`, there are a lot of breaking changes
+
+### Features
+
+* allow to use `remark@12` and `remark@13` (other versions is not tested, but it may work too)
+
 ### [1.0.1](https://github.com/webpack-contrib/remark-loader/compare/v1.0.0...v1.0.1) (2020-10-09)
 
 ### Chore
