@@ -21,14 +21,14 @@ Load markdown through `remark`.
 Simply add the loader to your configuration, and pass options.
 
 ```js
-import md from 'markdown-file.md';
+import md from "markdown-file.md";
 console.log(md);
 ```
 
 **webpack.config.js**
 
 ```js
-import RemarkHTML from 'remark-html';
+import RemarkHTML from "remark-html";
 
 module.exports = {
   // ...
@@ -38,10 +38,10 @@ module.exports = {
         test: /\.md$/,
         use: [
           {
-            loader: 'html-loader',
+            loader: "html-loader",
           },
           {
-            loader: 'remark-loader',
+            loader: "remark-loader",
             options: {
               remarkOptions: {
                 plugins: [RemarkHTML],
@@ -87,7 +87,7 @@ Allows to connect [`remark` plugins](https://github.com/wooorm/remark/blob/maste
 **webpack.config.js**
 
 ```js
-import RemarkFrontmatter from 'remark-frontmatter';
+import RemarkFrontmatter from "remark-frontmatter";
 
 module.exports = {
   // ...
@@ -97,7 +97,7 @@ module.exports = {
         test: /\.md$/,
         use: [
           {
-            loader: 'remark-loader',
+            loader: "remark-loader",
             options: {
               remarkOptions: {
                 plugins: [RemarkFrontmatter],
@@ -118,8 +118,8 @@ If need to specify options for the plugin, can pass the plugin using an array, w
 **webpack.config.js**
 
 ```js
-import RemarkFrontmatter from 'remark-frontmatter';
-import RemarkBookmarks from 'remark-bookmarks';
+import RemarkFrontmatter from "remark-frontmatter";
+import RemarkBookmarks from "remark-bookmarks";
 
 module.exports = {
   // ...
@@ -129,7 +129,7 @@ module.exports = {
         test: /\.md$/,
         use: [
           {
-            loader: 'remark-loader',
+            loader: "remark-loader",
             options: {
               remarkOptions: {
                 plugins: [
@@ -138,7 +138,7 @@ module.exports = {
                     RemarkBookmarks,
                     {
                       bookmarks: {
-                        npm: 'https://npmjs.com/package/remark-bookmarks',
+                        npm: "https://npmjs.com/package/remark-bookmarks",
                       },
                     },
                   ],
@@ -171,12 +171,12 @@ module.exports = {
         test: /\.md$/,
         use: [
           {
-            loader: 'remark-loader',
+            loader: "remark-loader",
             options: {
               remarkOptions: {
                 settings: {
-                  bullet: '+',
-                  listItemIndent: '1',
+                  bullet: "+",
+                  listItemIndent: "1",
                 },
               },
             },
@@ -212,13 +212,13 @@ module.exports = {
         test: /\.md$/,
         use: [
           {
-            loader: 'remark-loader',
+            loader: "remark-loader",
             options: {
               remarkOptions: {
                 plugins: [examplePluginUsingData],
                 data: {
-                  alpha: 'bravo',
-                  charlie: 'delta',
+                  alpha: "bravo",
+                  charlie: "delta",
                 },
               },
             },
@@ -241,7 +241,7 @@ To override this behavior, set `removeFrontMatter` to `false` and add `remark-fr
 **webpack.config.js**
 
 ```js
-import RemarkFrontmatter from 'remark-frontmatter';
+import RemarkFrontmatter from "remark-frontmatter";
 
 module.exports = {
   // ...
@@ -251,7 +251,7 @@ module.exports = {
         test: /\.md$/,
         use: [
           {
-            loader: 'remark-loader',
+            loader: "remark-loader",
             options: {
               removeFrontMatter: false,
               remarkOptions: {
@@ -280,14 +280,14 @@ This project was inspired the following open source work:
 To get html, need to add [`remark-html`](https://github.com/wooorm/remark-html) to the remark plugins and add [`html-loader`](https://github.com/webpack-contrib/html-loader) to the `webpack.config`
 
 ```js
-import md from 'markdown-file.md';
+import md from "markdown-file.md";
 console.log(md);
 ```
 
 **webpack.config.js**
 
 ```js
-import RemarkHTML from 'remark-html';
+import RemarkHTML from "remark-html";
 
 module.exports = {
   // ...
@@ -297,10 +297,10 @@ module.exports = {
         test: /\.md$/,
         use: [
           {
-            loader: 'html-loader',
+            loader: "html-loader",
           },
           {
-            loader: 'remark-loader',
+            loader: "remark-loader",
             options: {
               remarkOptions: {
                 plugins: [RemarkHTML],
@@ -319,7 +319,7 @@ module.exports = {
 **index.js**
 
 ```js
-import md from 'markdown-file.md';
+import md from "markdown-file.md";
 console.log(md);
 ```
 
@@ -334,7 +334,7 @@ module.exports = {
         test: /\.md$/,
         use: [
           {
-            loader: 'remark-loader',
+            loader: "remark-loader",
           },
         ],
       },
