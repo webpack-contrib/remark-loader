@@ -1,25 +1,25 @@
-import { getOptions } from 'loader-utils';
+import { getOptions } from "loader-utils";
 
-import { validate } from 'schema-utils';
-import frontMatter from 'front-matter';
-import remark from 'remark';
-import Report from 'vfile-reporter';
+import { validate } from "schema-utils";
+import frontMatter from "front-matter";
+import remark from "remark";
+import Report from "vfile-reporter";
 
-import schema from './options.json';
+import schema from "./options.json";
 
 export default function loader(content) {
   const options = getOptions(this);
 
   validate(schema, options, {
-    name: 'Remark Loader',
-    baseDataPath: 'options',
+    name: "Remark Loader",
+    baseDataPath: "options",
   });
 
   const remarkOptions =
-    typeof options.remarkOptions !== 'undefined' ? options.remarkOptions : {};
+    typeof options.remarkOptions !== "undefined" ? options.remarkOptions : {};
   const processor = remark();
 
-  if (typeof remarkOptions.plugins !== 'undefined') {
+  if (typeof remarkOptions.plugins !== "undefined") {
     for (const item of remarkOptions.plugins) {
       if (Array.isArray(item)) {
         const [plugin, pluginOptions] = item;
@@ -31,16 +31,16 @@ export default function loader(content) {
     }
   }
 
-  if (typeof remarkOptions.settings !== 'undefined') {
+  if (typeof remarkOptions.settings !== "undefined") {
     processor.use({ settings: remarkOptions.settings });
   }
 
-  if (typeof remarkOptions.data !== 'undefined') {
+  if (typeof remarkOptions.data !== "undefined") {
     processor.data(remarkOptions.data);
   }
 
   const removeFrontMatter =
-    typeof options.removeFrontMatter !== 'undefined'
+    typeof options.removeFrontMatter !== "undefined"
       ? options.removeFrontMatter
       : true;
   const callback = this.async();
