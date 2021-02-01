@@ -1,4 +1,5 @@
 {
+  "title": "Remark Loader options",
   "type": "object",
   "additionalProperties": false,
   "properties": {
