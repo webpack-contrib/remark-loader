@@ -1,6 +1,3 @@
-import { getOptions } from "loader-utils";
-
-import { validate } from "schema-utils";
 import frontMatter from "front-matter";
 import remark from "remark";
 import Report from "vfile-reporter";
@@ -8,13 +5,7 @@ import Report from "vfile-reporter";
 import schema from "./options.json";
 
 export default function loader(content) {
-  const options = getOptions(this);
-
-  validate(schema, options, {
-    name: "Remark Loader",
-    baseDataPath: "options",
-  });
-
+  const options = this.getOptions(schema);
   const remarkOptions =
     typeof options.remarkOptions !== "undefined" ? options.remarkOptions : {};
   const processor = remark();
