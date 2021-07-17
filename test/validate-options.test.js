@@ -21,7 +21,16 @@ describe("validate options", () => {
           },
         },
       ],
-      failure: [true, "test", () => {}, [], { unknown: false }],
+      failure: [
+        true,
+        "test",
+        () => {},
+        [],
+        { unknown: false },
+        { plugins: true },
+        { settings: 100 },
+        { data: "true" },
+      ],
     },
     removeFrontMatter: {
       success: [true, false],
