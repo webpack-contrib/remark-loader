@@ -5,23 +5,33 @@
   "properties": {
     "remarkOptions": {
       "type": "object",
+      "description": "Options for remark.",
+      "link": "https://github.com/webpack-contrib/remark-loader#remarkOptions",
       "additionalProperties": false,
       "properties": {
         "plugins": {
-          "type": "array"
+          "type": "array",
+          "description": "Allows to connect remark plugins.",
+          "link": "https://github.com/webpack-contrib/remark-loader#plugins"
         },
         "settings": {
           "type": "object",
+          "description": "Pass remark-stringify options and remark-parse options options to the remark.",
+          "link": "https://github.com/webpack-contrib/remark-loader#settings",
           "additionalProperties": true
         },
         "data": {
           "type": "object",
+          "description": "Configure the remark with information available to all plugins. Information is stored in an in-memory key-value store.",
+          "link": "https://github.com/webpack-contrib/remark-loader#data",
           "additionalProperties": true
         }
       }
     },
     "removeFrontMatter": {
-      "type": "boolean"
+      "type": "boolean",
+      "description": "By default, the frontMatter is removed. To override this behavior, set removeFrontMatter to false and add remark-frontmatter to plugins.",
+      "link": "https://github.com/webpack-contrib/remark-loader#removefrontmatter"
     }
   }
 }
