@@ -5,7 +5,16 @@ export default async function loader(content) {
   const callback = this.async();
   const remarkOptions =
     typeof options.remarkOptions !== "undefined" ? options.remarkOptions : {};
-  const { remark } = await import("remark");
+  const loadedRemark = await import("remark");
+
+  let remark;
+
+  if (loadedRemark.default) {
+    remark = loadedRemark.default;
+  } else {
+    remark = loadedRemark.remark;
+  }
+
   const processor = remark();
 
   if (typeof remarkOptions.plugins !== "undefined") {
@@ -51,7 +60,8 @@ export default async function loader(content) {
         return;
       }
 
-      callback(null, file.value);
+      // `file.contents` for `remark` v13
+      callback(null, file.value || file.contents);
     });
   } catch (error) {
     callback(error);
