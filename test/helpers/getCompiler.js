@@ -1,16 +1,19 @@
 import path from "path";
+import { fileURLToPath } from "url";
 
 import webpack from "webpack";
 import { createFsFromVolume, Volume } from "memfs";
+
+const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default (fixture, loaderOptions = {}, config = {}) => {
   const fullConfig = {
     mode: "development",
     devtool: config.devtool || false,
-    context: path.resolve(__dirname, "../fixtures"),
-    entry: path.resolve(__dirname, "../fixtures", fixture),
+    context: path.resolve(dirname, "../fixtures"),
+    entry: path.resolve(dirname, "../fixtures", fixture),
     output: {
-      path: path.resolve(__dirname, "../outputs"),
+      path: path.resolve(dirname, "../outputs"),
       filename: "[name].bundle.js",
       chunkFilename: "[name].chunk.js",
       library: "remarkLoaderExport",
@@ -21,10 +24,10 @@ export default (fixture, loaderOptions = {}, config = {}) => {
           test: /\.md$/i,
           rules: [
             {
-              loader: require.resolve("./testLoader"),
+              loader: path.resolve(dirname, "./testLoader.cjs"),
             },
             {
-              loader: path.resolve(__dirname, "../../src"),
+              loader: path.resolve(dirname, "../../src/cjs.js"),
               options: loaderOptions || {},
             },
           ],

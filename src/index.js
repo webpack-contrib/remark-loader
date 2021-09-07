@@ -1,13 +1,11 @@
-import frontMatter from "front-matter";
-import remark from "remark";
-import Report from "vfile-reporter";
-
 import schema from "./options.json";
 
-export default function loader(content) {
+export default async function loader(content) {
   const options = this.getOptions(schema);
+  const callback = this.async();
   const remarkOptions =
     typeof options.remarkOptions !== "undefined" ? options.remarkOptions : {};
+  const { remark } = await import("remark");
   const processor = remark();
 
   if (typeof remarkOptions.plugins !== "undefined") {
@@ -34,21 +32,27 @@ export default function loader(content) {
     typeof options.removeFrontMatter !== "undefined"
       ? options.removeFrontMatter
       : true;
-  const callback = this.async();
+
+  let normalizedContent = content;
+
+  if (removeFrontMatter) {
+    const frontMatter = (await import("front-matter")).default;
+
+    normalizedContent = frontMatter(content).body;
+  }
+
+  const Report = (await import("vfile-reporter")).default;
 
   try {
-    processor.process(
-      removeFrontMatter ? frontMatter(content).body : content,
-      (error, file) => {
-        if (error) {
-          callback(Report(error));
+    processor.process(normalizedContent, (error, file) => {
+      if (error) {
+        callback(Report(error));
 
-          return;
-        }
-
-        callback(null, file.contents);
+        return;
       }
-    );
+
+      callback(null, file.value);
+    });
   } catch (error) {
     callback(error);
   }

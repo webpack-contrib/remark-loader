@@ -1,4 +1,5 @@
-import { getCompiler, compile } from "./helpers";
+import { getCompiler, compile } from "./helpers/index.js";
+import remarkGfm from "remark-gfm";
 
 describe("validate options", () => {
   const tests = {
@@ -6,7 +7,7 @@ describe("validate options", () => {
       success: [
         {
           // eslint-disable-next-line global-require
-          plugins: [require("remark-gfm")],
+          plugins: [remarkGfm],
         },
         {
           settings: {

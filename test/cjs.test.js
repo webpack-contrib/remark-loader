@@ -3,6 +3,6 @@ import cjs from "../src/cjs";
 
 describe("CJS", () => {
   it("should export loader", () => {
-    expect(cjs).toEqual(src);
+    expect(cjs).toEqual(src.default);
   });
 });

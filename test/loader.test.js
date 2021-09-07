@@ -1,4 +1,5 @@
 import path from "path";
+import { fileURLToPath } from "url";
 
 import RemarkHTML from "remark-html";
 import RemarkGFM from "remark-gfm";
@@ -12,6 +13,8 @@ import {
   getErrors,
   getWarnings,
 } from "./helpers";
+
+const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 describe("loader", () => {
   it("should work markdown to markdown", async () => {
@@ -35,13 +38,13 @@ describe("loader", () => {
               test: /\.md$/i,
               rules: [
                 {
-                  loader: require.resolve("./helpers/testLoader"),
+                  loader: path.resolve(dirname, "./helpers/testLoader.cjs"),
                 },
                 {
                   loader: "html-loader",
                 },
                 {
-                  loader: path.resolve(__dirname, "../src"),
+                  loader: path.resolve(dirname, "../src/cjs.js"),
                   options: {
                     remarkOptions: {
                       plugins: [RemarkHTML],
