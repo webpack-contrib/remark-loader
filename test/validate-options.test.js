@@ -1,5 +1,6 @@
-import { getCompiler, compile } from "./helpers/index.js";
 import remarkGfm from "remark-gfm";
+
+import { getCompiler, compile } from "./helpers/index.js";
 
 describe("validate options", () => {
   const tests = {

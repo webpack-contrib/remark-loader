@@ -12,7 +12,7 @@ import {
   getCompiler,
   getErrors,
   getWarnings,
-} from "./helpers";
+} from "./helpers/index.js";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
