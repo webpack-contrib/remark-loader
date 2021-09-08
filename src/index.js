@@ -12,7 +12,7 @@ export default async function loader(content) {
   if (loadedRemark.default) {
     remark = loadedRemark.default;
   } else {
-    remark = loadedRemark.remark;
+    ({ remark } = loadedRemark);
   }
 
   const processor = remark();
