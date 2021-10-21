@@ -1,17 +1,12 @@
 import path from "path";
 
-import RemarkHTML from "remark-html";
-import RemarkGFM from "remark-gfm";
-import RemarkBookmarks from "remark-bookmarks";
-import RemarkFrontmatter from "remark-frontmatter";
-
 import {
   compile,
   getExecutedCode,
   getCompiler,
   getErrors,
   getWarnings,
-} from "./helpers";
+} from "./helpers/index.js";
 
 describe("loader", () => {
   it("should work markdown to markdown", async () => {
@@ -25,6 +20,8 @@ describe("loader", () => {
   });
 
   it("should work markdown to html", async () => {
+    const RemarkHTML = (await import("remark-html")).default;
+
     const compiler = getCompiler(
       "simple.js",
       {},
@@ -63,6 +60,8 @@ describe("loader", () => {
   });
 
   it("should work with the 'remark-gfm' plugin", async () => {
+    const RemarkGFM = (await import("remark-gfm")).default;
+
     const compiler = getCompiler("simple.js", {
       remarkOptions: {
         plugins: [RemarkGFM],
@@ -77,6 +76,8 @@ describe("loader", () => {
   });
 
   it("should work if plugins are array", async () => {
+    const RemarkBookmarks = (await import("remark-bookmarks")).default;
+
     const compiler = getCompiler("multipleArgs.js", {
       remarkOptions: {
         plugins: [
@@ -100,6 +101,8 @@ describe("loader", () => {
   });
 
   it("should not remove frontmatter", async () => {
+    const RemarkFrontmatter = (await import("remark-frontmatter")).default;
+
     const compiler = getCompiler("multipleArgs.js", {
       removeFrontMatter: false,
       remarkOptions: {
@@ -181,6 +184,8 @@ describe("loader", () => {
   });
 
   it("should throw error #1", async () => {
+    const RemarkFrontmatter = (await import("remark-frontmatter")).default;
+
     const compiler = getCompiler("multipleArgs.js", {
       removeFrontMatter: false,
       remarkOptions: {

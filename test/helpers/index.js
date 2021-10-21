@@ -1,12 +1,12 @@
-import compile from "./compile";
-import execute from "./execute";
-import getExecutedCode from "./getExecutedCode";
-import getCompiler from "./getCompiler";
-import getErrors from "./getErrors";
-import getWarnings from "./getWarnings";
-import normalizeErrors from "./normalizeErrors";
-import readAsset from "./readAsset";
-import readsAssets from "./readAssets";
+import compile from "./compile.js";
+import execute from "./execute.js";
+import getExecutedCode from "./getExecutedCode.js";
+import getCompiler from "./getCompiler.js";
+import getErrors from "./getErrors.js";
+import getWarnings from "./getWarnings.js";
+import normalizeErrors from "./normalizeErrors.js";
+import readAsset from "./readAsset.js";
+import readsAssets from "./readAssets.js";
 
 export {
   compile,
