@@ -9,7 +9,7 @@ import {
 } from "./helpers/index.js";
 
 describe("loader", () => {
-  it("should work markdown to markdown", async () => {
+  it.only("should work markdown to markdown", async () => {
     const compiler = getCompiler("simple.js");
     const stats = await compile(compiler);
     const codeFromBundle = getExecutedCode("main.bundle.js", compiler, stats);
