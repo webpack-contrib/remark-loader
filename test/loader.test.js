@@ -199,7 +199,7 @@ describe("loader", () => {
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
-  it("should throw error #2", async () => {
+  it.only("should throw error #2", async () => {
     const errorGenerationPlugin = () => () => {
       throw new Error("Error");
     };
