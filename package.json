@@ -25,7 +25,7 @@
     "lint:prettier": "prettier \"{**/*,*}.{js,json,md,yml,css,ts}\" --list-different",
     "lint:js": "eslint --cache .",
     "lint": "npm-run-all -l -p \"lint:**\"",
-    "test:only": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --runInBand ./test/validate-options.test.js",
+    "test:only": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --runInBand ./test/loader.test.js",
     "test:watch": "npm run test:only -- --watch",
     "test:coverage": "npm run test:only -- --collectCoverageFrom=\"src/**/*.js\" --coverage",
     "pretest": "npm run lint",
