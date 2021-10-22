@@ -45,8 +45,6 @@ export default async function loader(content) {
       ? options.removeFrontMatter
       : true;
 
-  const Report = (await import("vfile-reporter")).default;
-
   let file;
 
   try {
@@ -54,6 +52,8 @@ export default async function loader(content) {
       removeFrontMatter ? frontMatter(content).body : content
     );
   } catch (error) {
+    const Report = (await import("vfile-reporter")).default;
+
     callback(Report(error));
 
     return;
