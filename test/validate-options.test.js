@@ -11,7 +11,6 @@ describe("validate options", () => {
     remarkOptions: {
       success: [
         {
-          // eslint-disable-next-line global-require
           plugins: [RemarkGFM],
         },
         {
