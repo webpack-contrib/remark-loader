@@ -61,27 +61,41 @@ Please see the wonderful [MDX](https://mdxjs.com/) project if you're interested 
 
 ## Options
 
-|                     Name                      |    Type     | Default | Description              |
-| :-------------------------------------------: | :---------: | :-----: | :----------------------- |
-|     **[`remarkOptions`](#remarkOptions)**     | `{Object}`  |  `{}`   | Remark options           |
-| **[`removeFrontMatter`](#removeFrontMatter)** | `{Boolean}` | `true`  | Remove removeFrontMatter |
+- **[`remarkOptions`](#remarkOptions)**
+- **[`removeFrontMatter`](#removeFrontMatter)**
 
 ### remarkOptions
 
-|            Name             |          Type          |   Default   | Description                                                                                       |
-| :-------------------------: | :--------------------: | :---------: | :------------------------------------------------------------------------------------------------ |
-|  **[`plugins`](#plugins)**  | `Array<String\|Array>` |    `[]`     | Allows to connect [`remark` plugins](https://github.com/wooorm/remark/blob/master/doc/plugins.md) |
-| **[`settings`](#settings)** |       `{Object}`       | `undefined` | Remark settings                                                                                   |
-|     **[`data`](#data)**     |       `{Object}`       | `undefined` | Information available to all plugins                                                              |
+Remark options
+
+Type:
+
+```ts
+type remarkOptions = {
+  plugins: Array<string | Array>;
+  settings: Object;
+  data: Object;
+};
+```
+
+- **[`plugins`](#plugins)**
+- **[`settings`](#settings)**
+- **[`data`](#data)**
 
 #### plugins
 
-Type: `Array<String|Array>`
+Allows to connect [`remark` plugins](https://github.com/wooorm/remark/blob/master/doc/plugins.md)
+Type:
+
+```ts
+type plugins = Array<string | Array>;
+```
+
 Default: `[]`
 
 Allows to connect [`remark` plugins](https://github.com/wooorm/remark/blob/master/doc/plugins.md)
 
-##### String
+##### string
 
 **webpack.config.js**
 
@@ -110,7 +124,7 @@ module.exports = {
 };
 ```
 
-##### Array
+##### array
 
 If need to specify options for the plugin, can pass the plugin using an array, where the second argument will be options.
 
@@ -154,7 +168,13 @@ module.exports = {
 
 #### settings
 
-Type: `Object`
+Remark settings  
+Type:
+
+```ts
+type settings = Object;
+```
+
 Default: `undefined`
 
 Pass [`remark-stringify` options](https://github.com/remarkjs/remark/tree/main/packages/remark-stringify#options) and [`remark-parse` options](https://github.com/remarkjs/remark/tree/main/packages/remark-parse#options) options to the `remark`.
@@ -189,7 +209,13 @@ module.exports = {
 
 #### data
 
-Type: `Object`
+Information available to all plugins  
+Type:
+
+```ts
+type data = Object;
+```
+
 Default: `undefined`
 
 Configure the [`remark`](https://github.com/unifiedjs/unified#processordatakey-value) with information available to all plugins.
@@ -231,7 +257,14 @@ module.exports = {
 
 ### removeFrontMatter
 
-Type: `Boolean`
+Remove removeFrontMatter
+
+Type:
+
+```ts
+type removeFrontMatter = boolean;
+```
+
 Default: `true`
 
 By default, the frontMatter is removed.
