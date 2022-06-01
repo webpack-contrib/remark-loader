@@ -25,7 +25,7 @@
     "lint:prettier": "prettier \"{**/*,*}.{js,json,md,yml,css,ts}\" --list-different",
     "lint:js": "eslint --cache .",
     "lint": "npm-run-all -l -p \"lint:**\"",
-    "test:only": "node --loader ts-node/esm ./node_modules/.bin/jest",
+    "test:only": "NODE_OPTIONS='--loader ts-node/esm' jest",
     "test:watch": "npm run test:only -- --watch",
     "test:coverage": "npm run test:only -- --collectCoverageFrom=\"src/**/*.mjs\" --coverage",
     "pretest": "npm run lint",
