@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate options should throw an error on the "remarkOptions" option with "() => {}" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options.remarkOptions should be an object:
+   object { plugins?, settings?, data? }
+   -> Options for remark.
+   -> Read more at https://github.com/webpack-contrib/remark-loader#remarkOptions"
+`;
+
+exports[`validate options should throw an error on the "remarkOptions" option with "[]" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options.remarkOptions should be an object:
+   object { plugins?, settings?, data? }
+   -> Options for remark.
+   -> Read more at https://github.com/webpack-contrib/remark-loader#remarkOptions"
+`;
+
+exports[`validate options should throw an error on the "remarkOptions" option with "{"data":"true"}" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options.remarkOptions.data should be an object:
+   object { … }
+   -> Configure the remark with information available to all plugins. Information is stored in an in-memory key-value store.
+   -> Read more at https://github.com/webpack-contrib/remark-loader#data"
+`;
+
+exports[`validate options should throw an error on the "remarkOptions" option with "{"plugins":true}" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options.remarkOptions.plugins should be an array:
+   [any, ...]
+   -> Allows to connect remark plugins.
+   -> Read more at https://github.com/webpack-contrib/remark-loader#plugins"
+`;
+
+exports[`validate options should throw an error on the "remarkOptions" option with "{"settings":100}" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options.remarkOptions.settings should be an object:
+   object { … }
+   -> Pass remark-stringify options and remark-parse options options to the remark.
+   -> Read more at https://github.com/webpack-contrib/remark-loader#settings"
+`;
+
+exports[`validate options should throw an error on the "remarkOptions" option with "{"unknown":false}" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options.remarkOptions has an unknown property 'unknown'. These properties are valid:
+   object { plugins?, settings?, data? }
+   -> Options for remark.
+   -> Read more at https://github.com/webpack-contrib/remark-loader#remarkOptions"
+`;
+
+exports[`validate options should throw an error on the "remarkOptions" option with "test" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options.remarkOptions should be an object:
+   object { plugins?, settings?, data? }
+   -> Options for remark.
+   -> Read more at https://github.com/webpack-contrib/remark-loader#remarkOptions"
+`;
+
+exports[`validate options should throw an error on the "remarkOptions" option with "true" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options.remarkOptions should be an object:
+   object { plugins?, settings?, data? }
+   -> Options for remark.
+   -> Read more at https://github.com/webpack-contrib/remark-loader#remarkOptions"
+`;
+
+exports[`validate options should throw an error on the "removeFrontMatter" option with "() => {}" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options.removeFrontMatter should be a boolean.
+   -> By default, the frontMatter is removed. To override this behavior, set removeFrontMatter to false and add remark-frontmatter to plugins.
+   -> Read more at https://github.com/webpack-contrib/remark-loader#removefrontmatter"
+`;
+
+exports[`validate options should throw an error on the "removeFrontMatter" option with "/test/" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options.removeFrontMatter should be a boolean.
+   -> By default, the frontMatter is removed. To override this behavior, set removeFrontMatter to false and add remark-frontmatter to plugins.
+   -> Read more at https://github.com/webpack-contrib/remark-loader#removefrontmatter"
+`;
+
+exports[`validate options should throw an error on the "removeFrontMatter" option with "test" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options.removeFrontMatter should be a boolean.
+   -> By default, the frontMatter is removed. To override this behavior, set removeFrontMatter to false and add remark-frontmatter to plugins.
+   -> Read more at https://github.com/webpack-contrib/remark-loader#removefrontmatter"
+`;
+
+exports[`validate options should throw an error on the "removeFrontMatter" option with "true" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options.removeFrontMatter should be a boolean.
+   -> By default, the frontMatter is removed. To override this behavior, set removeFrontMatter to false and add remark-frontmatter to plugins.
+   -> Read more at https://github.com/webpack-contrib/remark-loader#removefrontmatter"
+`;
+
+exports[`validate options should throw an error on the "unknown" option with "/test/" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'unknown'. These properties are valid:
+   object { remarkOptions?, removeFrontMatter? }"
+`;
+
+exports[`validate options should throw an error on the "unknown" option with "[]" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'unknown'. These properties are valid:
+   object { remarkOptions?, removeFrontMatter? }"
+`;
+
+exports[`validate options should throw an error on the "unknown" option with "{"foo":"bar"}" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'unknown'. These properties are valid:
+   object { remarkOptions?, removeFrontMatter? }"
+`;
+
+exports[`validate options should throw an error on the "unknown" option with "{}" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'unknown'. These properties are valid:
+   object { remarkOptions?, removeFrontMatter? }"
+`;
+
+exports[`validate options should throw an error on the "unknown" option with "1" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'unknown'. These properties are valid:
+   object { remarkOptions?, removeFrontMatter? }"
+`;
+
+exports[`validate options should throw an error on the "unknown" option with "false" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'unknown'. These properties are valid:
+   object { remarkOptions?, removeFrontMatter? }"
+`;
+
+exports[`validate options should throw an error on the "unknown" option with "test" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'unknown'. These properties are valid:
+   object { remarkOptions?, removeFrontMatter? }"
+`;
+
+exports[`validate options should throw an error on the "unknown" option with "true" value 1`] = `
+"Invalid options object. Remark Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'unknown'. These properties are valid:
+   object { remarkOptions?, removeFrontMatter? }"
+`;
