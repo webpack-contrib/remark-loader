@@ -27,7 +27,7 @@
     "lint": "npm-run-all -l -p \"lint:**\"",
     "test:only": "cross-env NODE_OPTIONS='--loader ts-node/esm' jest",
     "test:watch": "npm run test:only -- --watch",
-    "test:coverage": "npm run test:only -- --collectCoverageFrom=\"src/**/*.mjs\" --coverage",
+    "test:coverage": "npm run test:only -- --collectCoverageFrom=\"dist/**/*.js\" --coverage",
     "pretest": "npm run lint",
     "test": "npm run test:coverage",
     "prepare": "husky install && npm run build",
@@ -73,6 +73,7 @@
     "remark-gfm": "^3.0.0",
     "remark-html": "^15.0.0",
     "standard-version": "^9.3.1",
+    "ts-node": "^10.8.0",
     "webpack": "^5.45.1"
   },
   "keywords": [
