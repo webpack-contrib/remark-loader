@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.0](https://github.com/webpack-contrib/remark-loader/compare/v4.0.0...v5.0.0) (2022-06-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* minimum supported `Node.js` version is `14.15.0` (#65)
+* minimum supported `remark` version is `14.0.0`
+
+### Features
+
+* output links and descriptions on errors ([#44](https://github.com/webpack-contrib/remark-loader/issues/44)) ([482647b](https://github.com/webpack-contrib/remark-loader/commit/482647b3111421e4ca39b7937be3f2612277aa1f))
+
 ## [4.0.0](https://github.com/webpack-contrib/remark-loader/compare/v3.0.0...v4.0.0) (2021-05-18)
 
 
