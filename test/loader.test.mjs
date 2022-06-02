@@ -6,10 +6,11 @@ import {
   getCompiler,
   getErrors,
   getWarnings,
-} from "./helpers/index.js";
+} from "./helpers/index.mjs";
+import { fileURLToPath } from "url";
 
 describe("loader", () => {
-  it.only("should work markdown to markdown", async () => {
+  it("should work markdown to markdown", async () => {
     const compiler = getCompiler("simple.js");
     const stats = await compile(compiler);
     const codeFromBundle = getExecutedCode("main.bundle.js", compiler, stats);
@@ -21,6 +22,7 @@ describe("loader", () => {
 
   it("should work markdown to html", async () => {
     const RemarkHTML = (await import("remark-html")).default;
+    const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
     const compiler = getCompiler(
       "simple.js",
@@ -32,13 +34,13 @@ describe("loader", () => {
               test: /\.md$/i,
               rules: [
                 {
-                  loader: require.resolve("./helpers/testLoader"),
+                  loader: path.resolve(__dirname, "./helpers/testLoader.cjs"),
                 },
                 {
                   loader: "html-loader",
                 },
                 {
-                  loader: path.resolve(__dirname, "../src"),
+                  loader: path.resolve(__dirname, "../dist/cjs.js"),
                   options: {
                     remarkOptions: {
                       plugins: [RemarkHTML],

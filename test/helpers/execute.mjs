@@ -1,11 +1,12 @@
 import Module from "module";
 import path from "path";
+import { fileURLToPath } from "url";
 
-const parentModule = module;
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default (code) => {
   const resource = "test.js";
-  const module = new Module(resource, parentModule);
+  const module = new Module(resource);
   // eslint-disable-next-line no-underscore-dangle
   module.paths = Module._nodeModulePaths(
     path.resolve(__dirname, "../fixtures")

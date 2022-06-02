@@ -21,6 +21,7 @@ Simply add the loader to your configuration, and pass options.
 
 ```js
 import md from "markdown-file.md";
+
 console.log(md);
 ```
 

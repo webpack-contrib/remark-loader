@@ -1,4 +1,4 @@
-import { getCompiler, compile } from "./helpers/index.js";
+import { getCompiler, compile } from "./helpers/index.mjs";
 
 let RemarkGFM;
 
@@ -59,7 +59,7 @@ describe("validate options", () => {
   }
 
   async function createTestCase(key, value, type) {
-    it.skip(`should ${
+    it(`should ${
       type === "success" ? "successfully validate" : "throw an error on"
     } the "${key}" option with "${stringifyValue(value)}" value`, async () => {
       const compiler = getCompiler("simple.js", { [key]: value });
