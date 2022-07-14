@@ -1,5 +1,5 @@
-import md from './multipleArgs.md';
+const md = require("./multipleArgs.md");
 
 __export__ = md;
 
-export default md;
+module.exports = md;

@@ -1,9 +1,9 @@
-import { getCompiler, compile } from "./helpers/index.mjs";
+const { getCompiler, compile } = require("./helpers/index.js");
 
 let RemarkGFM;
 
 (async () => {
-  RemarkGFM = await import("remark-gfm");
+  RemarkGFM = await require("remark-gfm");
 })();
 
 describe("validate options", () => {

@@ -1,8 +1,8 @@
-import frontMatter from "front-matter";
+const frontMatter = require("front-matter");
 
-import schema from "./options.json";
+const schema = require("./options.json");
 
-export default async function loader(content) {
+module.exports = async function loader(content) {
   const options = this.getOptions(schema);
   const remarkOptions =
     typeof options.remarkOptions !== "undefined" ? options.remarkOptions : {};
@@ -11,7 +11,7 @@ export default async function loader(content) {
   let remark;
 
   try {
-    ({ remark } = await import("remark"));
+    ({ remark } = await require("remark"));
   } catch (error) {
     callback(error);
 
@@ -52,7 +52,7 @@ export default async function loader(content) {
       removeFrontMatter ? frontMatter(content).body : content
     );
   } catch (error) {
-    const Report = (await import("vfile-reporter")).default;
+    const Report = await require("vfile-reporter");
 
     callback(Report(error));
 
@@ -60,4 +60,4 @@ export default async function loader(content) {
   }
 
   callback(null, String(file));
-}
+};

@@ -1,7 +1,7 @@
 function testLoader(content) {
   const result = { md: content };
 
-  return `export default ${JSON.stringify(result)}`;
+  return `module.exports = ${JSON.stringify(result)}`;
 }
 
 module.exports = testLoader;

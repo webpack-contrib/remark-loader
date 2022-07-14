@@ -1,5 +1,5 @@
-import md from './simple.md';
+const md = require("./simple.md");
 
 __export__ = md;
 
-export default md;
+module.exports = md;

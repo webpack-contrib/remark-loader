@@ -1,10 +1,7 @@
-import Module from "module";
-import path from "path";
-import { fileURLToPath } from "url";
+const Module = require("module");
+const path = require("path");
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-export default (code) => {
+module.exports = (code) => {
   const resource = "test.js";
   const module = new Module(resource);
   // eslint-disable-next-line no-underscore-dangle

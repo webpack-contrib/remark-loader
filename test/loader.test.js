@@ -1,13 +1,12 @@
-import path from "path";
+const path = require("path");
 
-import {
+const {
   compile,
   getExecutedCode,
   getCompiler,
   getErrors,
   getWarnings,
-} from "./helpers/index.mjs";
-import { fileURLToPath } from "url";
+} = require("./helpers/index.js");
 
 describe("loader", () => {
   it("should work markdown to markdown", async () => {
@@ -21,8 +20,7 @@ describe("loader", () => {
   });
 
   it("should work markdown to html", async () => {
-    const RemarkHTML = (await import("remark-html")).default;
-    const __dirname = path.dirname(fileURLToPath(import.meta.url));
+    const RemarkHTML = await require("remark-html");
 
     const compiler = getCompiler(
       "simple.js",
@@ -62,7 +60,7 @@ describe("loader", () => {
   });
 
   it("should work with the 'remark-gfm' plugin", async () => {
-    const RemarkGFM = (await import("remark-gfm")).default;
+    const RemarkGFM = await require("remark-gfm");
 
     const compiler = getCompiler("simple.js", {
       remarkOptions: {
@@ -78,7 +76,7 @@ describe("loader", () => {
   });
 
   it("should work if plugins are array", async () => {
-    const RemarkBookmarks = (await import("remark-bookmarks")).default;
+    const RemarkBookmarks = await require("remark-bookmarks");
 
     const compiler = getCompiler("multipleArgs.js", {
       remarkOptions: {
@@ -103,7 +101,7 @@ describe("loader", () => {
   });
 
   it("should not remove frontmatter", async () => {
-    const RemarkFrontmatter = (await import("remark-frontmatter")).default;
+    const RemarkFrontmatter = await require("remark-frontmatter");
 
     const compiler = getCompiler("multipleArgs.js", {
       removeFrontMatter: false,
@@ -186,7 +184,7 @@ describe("loader", () => {
   });
 
   it("should throw error #1", async () => {
-    const RemarkFrontmatter = (await import("remark-frontmatter")).default;
+    const RemarkFrontmatter = await require("remark-frontmatter");
 
     const compiler = getCompiler("multipleArgs.js", {
       removeFrontMatter: false,

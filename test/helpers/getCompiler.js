@@ -1,12 +1,9 @@
-import path from "path";
+const path = require("path");
 
-import webpack from "webpack";
-import { createFsFromVolume, Volume } from "memfs";
-import { fileURLToPath } from "url";
+const webpack = require("webpack");
+const { createFsFromVolume, Volume } = require("memfs");
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-export default (fixture, loaderOptions = {}, config = {}) => {
+module.exports = (fixture, loaderOptions = {}, config = {}) => {
   const fullConfig = {
     mode: "development",
     devtool: config.devtool || false,
