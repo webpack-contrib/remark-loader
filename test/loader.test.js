@@ -38,7 +38,7 @@ describe("loader", () => {
                   loader: "html-loader",
                 },
                 {
-                  loader: path.resolve(__dirname, "../dist/cjs.js"),
+                  loader: path.resolve(__dirname, "../src/index.js"),
                   options: {
                     remarkOptions: {
                       plugins: [RemarkHTML],

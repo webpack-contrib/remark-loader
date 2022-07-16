@@ -24,7 +24,7 @@ module.exports = (fixture, loaderOptions = {}, config = {}) => {
               loader: path.resolve(__dirname, "./testLoader.cjs"),
             },
             {
-              loader: path.resolve(__dirname, "../../dist/cjs.js"),
+              loader: path.resolve(__dirname, "../../src/index.js"),
               options: loaderOptions || {},
             },
           ],
