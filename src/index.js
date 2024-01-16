@@ -49,7 +49,7 @@ export default async function loader(content) {
 
   try {
     file = await processor.process(
-      removeFrontMatter ? frontMatter(content).body : content
+      removeFrontMatter ? frontMatter(content).body : content,
     );
   } catch (error) {
     const Report = (await import("vfile-reporter")).default;
