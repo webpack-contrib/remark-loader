@@ -11,7 +11,7 @@ module.exports = (api) => {
         {
           exclude: ["proposal-dynamic-import"],
           targets: {
-            node: "14.15.0",
+            node: "18.12.0",
           },
         },
       ],
