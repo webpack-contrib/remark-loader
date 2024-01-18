@@ -52,9 +52,7 @@ export default async function loader(content) {
       removeFrontMatter ? frontMatter(content).body : content,
     );
   } catch (error) {
-    const Report = (await import("vfile-reporter")).default;
-
-    callback(Report(error));
+    callback(error);
 
     return;
   }

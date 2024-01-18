@@ -16,7 +16,7 @@ describe("validate options", () => {
         {
           settings: {
             bullet: "+",
-            listItemIndent: "1",
+            listItemIndent: "one",
           },
         },
         {

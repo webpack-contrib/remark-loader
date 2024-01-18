@@ -51,7 +51,7 @@ describe("loader", () => {
             },
           ],
         },
-      }
+      },
     );
     const stats = await compile(compiler);
     const codeFromBundle = getExecutedCode("main.bundle.js", compiler, stats);
@@ -124,7 +124,7 @@ describe("loader", () => {
       remarkOptions: {
         settings: {
           bullet: "+",
-          listItemIndent: "1",
+          listItemIndent: "one",
         },
       },
     });
@@ -143,7 +143,7 @@ describe("loader", () => {
           {
             settings: {
               bullet: "+",
-              listItemIndent: "1",
+              listItemIndent: "one",
             },
           },
         ],
