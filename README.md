@@ -86,6 +86,7 @@ type remarkOptions = {
 #### plugins
 
 Allows to connect [`remark` plugins](https://github.com/wooorm/remark/blob/master/doc/plugins.md)
+
 Type:
 
 ```ts
@@ -127,7 +128,7 @@ module.exports = {
 
 ##### array
 
-If need to specify options for the plugin, can pass the plugin using an array, where the second argument will be options.
+If need to specify options for the plugin, you can pass the plugin using an array, where the second argument will be the `options`.
 
 **webpack.config.js**
 
@@ -169,7 +170,8 @@ module.exports = {
 
 #### settings
 
-Remark settings  
+Remark settings
+
 Type:
 
 ```ts
@@ -178,7 +180,7 @@ type settings = Object;
 
 Default: `undefined`
 
-Pass [`remark-stringify` options](https://github.com/remarkjs/remark/tree/main/packages/remark-stringify#options) and [`remark-parse` options](https://github.com/remarkjs/remark/tree/main/packages/remark-parse#options) options to the `remark`.
+Pass [`remark-stringify` options](https://github.com/remarkjs/remark/tree/main/packages/remark-stringify#options) and [`remark-parse` options](https://github.com/remarkjs/remark/tree/main/packages/remark-parse#options) to `remark`.
 
 **webpack.config.js**
 
@@ -210,7 +212,8 @@ module.exports = {
 
 #### data
 
-Information available to all plugins  
+Information available to all plugins
+
 Type:
 
 ```ts
@@ -219,8 +222,8 @@ type data = Object;
 
 Default: `undefined`
 
-Configure the [`remark`](https://github.com/unifiedjs/unified#processordatakey-value) with information available to all plugins.
-Information is stored in an in-memory key-value store.
+Configure [`remark`](https://github.com/unifiedjs/unified#processordatakey-value) with information available to all plugins.
+This information is stored in an in-memory key-value store.
 
 **webpack.config.js**
 
@@ -310,7 +313,7 @@ This project was inspired the following open source work:
 
 ### Markdown to HTML
 
-To get html, need to add [`remark-html`](https://github.com/wooorm/remark-html) to the remark plugins and add [`html-loader`](https://github.com/webpack-contrib/html-loader) to the `webpack.config`
+To get HTML, you need to add [`remark-html`](https://github.com/wooorm/remark-html) to the remark plugins and add [`html-loader`](https://github.com/webpack-contrib/html-loader) to your `webpack.config.js`
 
 ```js
 import md from "markdown-file.md";
@@ -378,7 +381,8 @@ module.exports = {
 
 ## Contributing
 
-Please take a moment to read our contributing guidelines if you haven't yet done so.
+We welcome all contributions!
+If you're new here, please take a moment to review our contributing guidelines before submitting issues or pull requests.
 
 [CONTRIBUTING](./.github/CONTRIBUTING.md)
 
