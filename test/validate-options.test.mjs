@@ -1,10 +1,6 @@
-import { getCompiler, compile } from "./helpers/index.mjs";
+import { compile, getCompiler } from "./helpers/index.mjs";
 
-let RemarkGFM;
-
-(async () => {
-  RemarkGFM = await import("remark-gfm");
-})();
+const { default: RemarkGFM } = await import("remark-gfm");
 
 describe("validate options", () => {
   const tests = {

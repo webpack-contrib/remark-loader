@@ -1,3 +1,5 @@
+"use strict";
+
 function testLoader(content) {
   const result = { md: content };
 
