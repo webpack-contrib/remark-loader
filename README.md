@@ -72,11 +72,11 @@ Remark options
 Type:
 
 ```ts
-type remarkOptions = {
-  plugins: Array<string | Array>;
-  settings: Object;
-  data: Object;
-};
+interface remarkOptions {
+  plugins: (string | any[])[];
+  settings: object;
+  data: object;
+}
 ```
 
 - **[`plugins`](#plugins)**
@@ -90,7 +90,7 @@ Allows to connect [`remark` plugins](https://github.com/wooorm/remark/blob/maste
 Type:
 
 ```ts
-type plugins = Array<string | Array>;
+type plugins = (string | any[])[];
 ```
 
 Default: `[]`
@@ -133,8 +133,8 @@ If need to specify options for the plugin, you can pass the plugin using an arra
 **webpack.config.js**
 
 ```js
-import RemarkFrontmatter from "remark-frontmatter";
 import RemarkBookmarks from "remark-bookmarks";
+import RemarkFrontmatter from "remark-frontmatter";
 
 module.exports = {
   // ...
@@ -175,7 +175,7 @@ Remark settings
 Type:
 
 ```ts
-type settings = Object;
+type settings = object;
 ```
 
 Default: `undefined`
@@ -217,7 +217,7 @@ Information available to all plugins
 Type:
 
 ```ts
-type data = Object;
+type data = object;
 ```
 
 Default: `undefined`
@@ -317,6 +317,7 @@ To get HTML, you need to add [`remark-html`](https://github.com/wooorm/remark-ht
 
 ```js
 import md from "markdown-file.md";
+
 console.log(md);
 ```
 
@@ -356,6 +357,7 @@ module.exports = {
 
 ```js
 import md from "markdown-file.md";
+
 console.log(md);
 ```
 

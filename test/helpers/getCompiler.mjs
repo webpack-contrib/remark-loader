@@ -1,8 +1,8 @@
-import path from "path";
+import path from "node:path";
 
+import { fileURLToPath } from "node:url";
+import { Volume, createFsFromVolume } from "memfs";
 import webpack from "webpack";
-import { createFsFromVolume, Volume } from "memfs";
-import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

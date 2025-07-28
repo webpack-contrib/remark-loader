@@ -1,13 +1,13 @@
-import path from "path";
+import path from "node:path";
 
+import { fileURLToPath } from "node:url";
 import {
   compile,
-  getExecutedCode,
   getCompiler,
   getErrors,
+  getExecutedCode,
   getWarnings,
 } from "./helpers/index.mjs";
-import { fileURLToPath } from "url";
 
 describe("loader", () => {
   it("should work markdown to markdown", async () => {
@@ -178,8 +178,8 @@ describe("loader", () => {
     const stats = await compile(compiler);
     const codeFromBundle = getExecutedCode("main.bundle.js", compiler, stats);
 
-    expect(alpha).toEqual("bravo");
-    expect(charlie).toEqual("delta");
+    expect(alpha).toBe("bravo");
+    expect(charlie).toBe("delta");
     expect(codeFromBundle.md).toMatchSnapshot("md");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
