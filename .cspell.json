@@ -29,9 +29,10 @@
     "Emojies",
     "molestie",
     "Lyyy",
-    "memfs"
+    "memfs",
+    "eslintcache",
+    "cspellcache"
   ],
-
   "ignorePaths": [
     "CHANGELOG.md",
     "package.json",
